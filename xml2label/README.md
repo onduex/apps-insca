@@ -1,0 +1,1 @@
+# Script para imprimir en pdf la información del xml que extrae la seccionadora
