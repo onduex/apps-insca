@@ -12,9 +12,9 @@ INSTALACIÓN:
 
     xlwings addin install
 
-3.- Guardar _VaultConnect.py en la carpeta C:$\CSV ó descargar desde Vault
+3.- Guardar printLabelFromXml.py en la misma carpeta que el archivo excel xlsm (con macros)
 
-4.- En VBA, en Herramientas/Referencias marcar xlwings (Al instalar el AddIn se marca automáticamente)
+4.- En VBA, verificar que en Herramientas/Referencias está marcado xlwings y que está la macro que llama al py
 
 5.- Reiniciar Excel
 
