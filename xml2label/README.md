@@ -12,7 +12,7 @@ INSTALACIÓN:
 
     xlwings addin install
 
-3.- Guardar _VaultConnect.py en la carpeta C:$\CSV ó descargar desde Vault
+3.- Guardar printpdf.py en la carpeta C:\xml
 
 4.- En VBA, en Herramientas/Referencias marcar xlwings (Al instalar el AddIn se marca automáticamente)
 
