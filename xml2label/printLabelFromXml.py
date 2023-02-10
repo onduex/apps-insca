@@ -3,13 +3,14 @@
 
 import xlwings as xw
 import xml.etree.ElementTree as ET
-from datetime import datetime
-
+import pprint
 
 @xw.sub
 def main():
-    UniquePattern = []
-    UniqueIdPattern = []
+    UniquePattern = {}
+    UniquePatternList = []
+    UniqueUsedBoardData = {}
+    ListUniqueUsedBoardData = []
 
     tree = ET.parse('D:/vs-projects/apps-insca/xml2label/03964113.xml')
     root = tree.getroot()
@@ -17,17 +18,36 @@ def main():
         # print(child.tag)
         if child.tag == 'Solution':
             print('Número de patrones: ', child.attrib['NPatterns'])
-    for rec in root.iter('Pattern'):
-        # print(rec.attrib['BrdNo'])
-        if rec.attrib['BrdNo'] not in UniquePattern:
-            UniquePattern.append(rec.attrib['BrdNo'])
-            UniqueIdPattern.append(rec.attrib['id'])
-    print('Patrones diferentes: ', UniquePattern)
-    print('Patrones Id: ', UniqueIdPattern)
+
+    # Cantidad de los tableros entero usados 
+    for brdinfo in child.findall('BrdInfo'):
+        if brdinfo.get('QUsed') != '0':
+            UniquePattern = ({
+                'id': brdinfo.attrib['BrdId'],
+                'QUsed': brdinfo.attrib['QUsed'],
+                })
+            UniquePatternList.append(UniquePattern)
+    # print(UniquePatternList)
+    
+    # Datos de los tableros enteros usados + Cantidad
+    for board in root.findall('Board'):
+        for rec in UniquePatternList:
+            if rec['id'] == board.get('id'):
+                UniqueUsedBoardData = ({
+                    'id': board.get('id'),
+                    'L': board.get('L'),
+                    'W': board.get('W'),
+                    'BrdCode': board.get('BrdCode'),
+                    'QUsed': rec['QUsed'], 
+                    })
+                ListUniqueUsedBoardData.append(UniqueUsedBoardData)
+    print('Tableros enteros: ', len(ListUniqueUsedBoardData))
+    pp = pprint.PrettyPrinter(sort_dicts=False, indent=4)
+    pp.pprint(ListUniqueUsedBoardData)
 
     # Piezas en cada patrón Id
-    for rec in root.iter('Sid'):
-        print(rec.attrib)
+    """ for rec in root.iter('Sid'):
+        print(rec.attrib) """
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]

@@ -8,7 +8,7 @@ INSTALACIÓN:
 
     cd C:\Python*\Scripts cd C:\Program Files\Python*\Scripts
 
-    pip3 install xlwings pywin32
+    pip3 install xlwings pywin32 lxml
 
     xlwings addin install
 
