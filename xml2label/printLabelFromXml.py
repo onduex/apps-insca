@@ -67,7 +67,7 @@ def main():
     template_vars = {"title" : "Sales Funnel Report - National",
                     "national_pivot_table": "lineas"}
     html_out = template.render(template_vars)
-    HTML(string=html_out).write_pdf("report.pdf")
+    HTML(string=html_out).write_pdf("C:/vs-projects/apps-insca/xml2label/templates/report.pdf")
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]
