@@ -5,7 +5,39 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <h2>Sales Funnel Report - National</h2>
-     {{ national_pivot_table }}
+    <h2>Tableros únicos usados</h2>
 </body>
 </html>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 65mm;">Descripción</th>
+            <th style="width: 25mm;">Largo</th>
+            <th style="width: 25mm;">Ancho</th>
+            <th style="width: 25mm;">Cantidad</th>
+            <th style="width: 50mm;">Código</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for board in boards %}
+        <tr>
+            <td>
+                <span>{{ board['id'] }}</span>
+            </td>
+            <td>
+                <span>{{ board['L'] }}</span>
+            </td>
+            <td>
+                <span>{{ board['W'] }}</span>
+            </td>
+            <td>
+                <span>{{ board['QUsed'] }}</span>
+            </td>
+            <td>
+                <span>{{ board['BrdCode'] }}</span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

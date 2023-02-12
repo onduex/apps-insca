@@ -64,8 +64,8 @@ def main():
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')    
-    template_vars = {"title" : "Sales Funnel Report - National",
-                    "national_pivot_table": "lineas"}
+    template_vars = {"title" : "ORDEN DE CORTE",
+                    "boards": ListUniqueUsedBoardData}
     html_out = template.render(template_vars)
     HTML(string=html_out).write_pdf("C:/vs-projects/apps-insca/xml2label/templates/report.pdf")
 
