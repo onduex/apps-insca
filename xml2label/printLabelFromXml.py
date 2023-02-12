@@ -41,13 +41,19 @@ def main():
                     'QUsed': rec['QUsed'], 
                     })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
-    print('Tableros enteros: ', len(ListUniqueUsedBoardData))
-    pp = pprint.PrettyPrinter(sort_dicts=False, indent=4)
-    pp.pprint(ListUniqueUsedBoardData)
+    # print('Tableros enteros: ', len(ListUniqueUsedBoardData))
+    # pp = pprint.PrettyPrinter(sort_dicts=False, indent=2)
+    # pp.pprint(ListUniqueUsedBoardData)
 
-    # Piezas en cada patrón Id
-    """ for rec in root.iter('Sid'):
-        print(rec.attrib) """
+    # Cantidad de piezas cortadas por patrón
+    for piece in root.iter('Piece'):
+        for sid in piece.iter('Sid'):
+            # print(piece.attrib, sid.attrib)
+            for pattern in child.findall('Pattern'):
+                if pattern.get('id') == sid.get('id'):
+                    print('De la pieza', piece.get('N'), 'de', piece.get('L'), 'X',
+                    piece.get('W'),'hay que fabricar', piece.get('Q'), 'con el patrón',
+                    pattern.get('id'), 'y el tablero', pattern.get('BrdNo'))
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]
