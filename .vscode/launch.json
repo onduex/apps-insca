@@ -8,7 +8,7 @@
             "name": "Python: archivo actual",
             "type": "python",
             "request": "launch",
-            "program": "D:/vs-projects/apps-insca/xml2label/printLabelFromXml.py",
+            "program": "C:/vs-projects/apps-insca/xml2label/printLabelFromXml.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

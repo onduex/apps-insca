@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import os
+import pprint
 import xlwings as xw
 import xml.etree.ElementTree as ET
-import pprint
+
+from weasyprint import HTML
+from jinja2 import Environment, FileSystemLoader
+
 
 @xw.sub
 def main():
+    
     UniquePattern = {}
     UniquePatternList = []
     UniqueUsedBoardData = {}
     ListUniqueUsedBoardData = []
 
-    tree = ET.parse('D:/vs-projects/apps-insca/xml2label/03964113.xml')
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
     root = tree.getroot()
     for child in root:
         # print(child.tag)
@@ -54,6 +60,14 @@ def main():
                     print('De la pieza', piece.get('N'), 'de', piece.get('L'), 'X',
                     piece.get('W'),'hay que fabricar', piece.get('Q'), 'con el patrón',
                     pattern.get('id'), 'y el tablero', pattern.get('BrdNo'))
+
+    # Definición de plantilla y variables
+    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
+    template = environment.get_template('informe.html')    
+    template_vars = {"title" : "Sales Funnel Report - National",
+                    "national_pivot_table": "lineas"}
+    html_out = template.render(template_vars)
+    HTML(string=html_out).write_pdf("report.pdf")
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]

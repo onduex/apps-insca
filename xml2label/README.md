@@ -8,7 +8,7 @@ INSTALACIÓN:
 
     cd C:\Python*\Scripts cd C:\Program Files\Python*\Scripts
 
-    pip3 install xlwings pywin32 lxml
+    pip3 install xlwings pywin32 lxml jinja2 weasyprint
 
     xlwings addin install
 
