@@ -24,6 +24,10 @@ def main():
         # print(child.tag)
         if child.tag == 'Solution':
             print('Número de patrones: ', child.attrib['NPatterns'])
+        if child.tag == 'Tx':
+            date = child.attrib['Date']
+        if child.tag == 'Material':
+            code = child.attrib['Code']
 
     # Cantidad de los tableros entero usados 
     for brdinfo in child.findall('BrdInfo'):
@@ -41,10 +45,11 @@ def main():
             if rec['id'] == board.get('id'):
                 UniqueUsedBoardData = ({
                     'id': board.get('id'),
-                    'L': board.get('L'),
-                    'W': board.get('W'),
+                    'L': str(board.get('L')).replace('.', ','),
+                    'W': str(board.get('W')).replace('.', ','),
                     'BrdCode': board.get('BrdCode'),
-                    'QUsed': rec['QUsed'], 
+                    'QUsed': rec['QUsed'],
+                    'Qty': board.get('Qty') 
                     })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
     # print('Tableros enteros: ', len(ListUniqueUsedBoardData))
@@ -62,12 +67,15 @@ def main():
                     pattern.get('id'), 'y el tablero', pattern.get('BrdNo'))
 
     # Definición de plantilla y variables
-    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
+    environment = Environment(loader=FileSystemLoader('./xml2label/templates/'))
     template = environment.get_template('informe.html')    
-    template_vars = {"title" : "ORDEN DE CORTE",
-                    "boards": ListUniqueUsedBoardData}
+    template_vars = {"title" : root.get('name') ,
+                     "date": date,
+                     "code": code,  
+                     "boards": ListUniqueUsedBoardData}
     html_out = template.render(template_vars)
-    HTML(string=html_out).write_pdf("C:/vs-projects/apps-insca/xml2label/templates/report.pdf")
+    HTML(string=html_out).write_pdf('./xml2label/templates/report.pdf')
+    os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]
