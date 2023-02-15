@@ -158,36 +158,35 @@
                 <th style="width: 15mm; text-align:right;">Real</th>
                 <th style="width: 50mm; text-align:right;">Barcode</th>
                 <th style="width: 35mm; text-align:right;">Código</th>
-                <th style="width: 35mm; text-align:right;">Descripción</th>
+                <!-- <th style="width: 35mm; text-align:right;">Descripción</th> -->
                 <th style="width: 25mm; text-align:right;">Ancho</th>
                 <th style="width: 25mm; text-align:right;">Largo</th>
             </tr>
         </thead>
         <tbody>
-            {% for board in boards %}
+            {% for part in parts %}
             <tr>
                 <td>
-                    <span>{{ board['id'] }}</span>
+                    <span>{{ part['id'] }}</span>
                 </td>
                 <td style="text-align:right;">
-                    <span>{{ board['Qty'] }}</span>
+                    <span>{{ part['Qty'] }}</span>
                 </td>
                 <td style="text-align:right;">
-                    <span>{{ board['QUsed'] }}</span>
+                    <p>{{ part['BrdCode'] }}</p>
                 </td>
                 <td style="text-align:right;">
-                    <span>{{ board['W'] }}</span>
+                    <span>{{ part['BrdCode'] }}</span>
+                    <span>{{ part['Op'] }}</span>
                 </td>
                 <td style="text-align:right;">
-                    <span>{{ board['L'] }}</span>
-                </td style="text-align:right;">
-                <td style="text-align:right;">
-                    <span>{{ board['BrdCode'] }}</span>
+                    <span>{{ part['W'] }}</span>
                 </td>
                 <td style="text-align:right;">
-                    <p>{{ board['BrdCode'] }}</p>
+                    <span>{{ part['L'] }}</span></br>
                 </td>
             </tr>
+            
             {% endfor %}
         </tbody>
     </table>
