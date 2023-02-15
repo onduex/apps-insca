@@ -67,14 +67,14 @@ def main():
                     pattern.get('id'), 'y el tablero', pattern.get('BrdNo'))
 
     # Definición de plantilla y variables
-    environment = Environment(loader=FileSystemLoader('./xml2label/templates/'))
+    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label//xml2label/templates/'))
     template = environment.get_template('informe.html')    
     template_vars = {"title" : root.get('name') ,
                      "date": date,
                      "code": code,  
                      "boards": ListUniqueUsedBoardData}
     html_out = template.render(template_vars)
-    HTML(string=html_out).write_pdf('./xml2label/templates/report.pdf')
+    HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//xml2label/templates/report.pdf')
     os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
 
     wb = xw.Book.caller()
