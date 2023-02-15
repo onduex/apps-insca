@@ -22,7 +22,7 @@ def main():
     UniqueUsedPartData = {}
     ListUniqueUsedPartData = []
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/04756565.xml')
     root = tree.getroot()
     for child in root:
         # print(child.tag)
@@ -97,8 +97,7 @@ def main():
     #                 })
     #             ListUniqueUsedPartData.append(UniqueUsedPartData)
     # print(ListUniqueUsedPartData)
-    # for rec in ListUniqueUsedPartData:
-    #     print(rec)
+
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))

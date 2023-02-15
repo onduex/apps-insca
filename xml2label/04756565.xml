@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created on Wed Feb 15 15:43:16 2023  Optiplanning: 5.00.0.13 -->
+<CutList order='SEMANA 2304.opj' name='04756565' NParts='4' NBoards='3'>
+	<Tx Date='Wed Feb 15 15:43:16 2023'/>
+	<Part id='P1' L='2175.00' W='1003.50' qMin='14' Code='1' MatNo='1272' Desc1='OP/00159' Desc2='A10.018446.ACWZYY' Material='MEL AG PLATA SOFT 016mm' SizeNo='1'/>
+	<Part id='P2' L='2063.00' W='310.00' qMin='7' Code='2' MatNo='1272' Desc1='OP/00160' Desc2='A10.019780.ACWZYY' Material='MEL AG PLATA SOFT 016mm' SizeNo='2'/>
+	<Part id='P3' L='2083.00' W='130.00' qMin='7' Code='3' MatNo='1272' Desc1='OP/00161' Desc2='A10.018444.ACWZYY' Material='MEL AG PLATA SOFT 016mm' SizeNo='3'/>
+	<Part id='P4' L='2072.00' W='95.00' qMin='7' Code='4' MatNo='1272' Desc1='OP/00158' Desc2='A10.018448.ACWZYY' Material='MEL AG PLATA SOFT 016mm' SizeNo='4'/>
+	<Material id='1272' Thickness='16.00' Grain='0' Density='670' Cost='100.0000'  Code='MEL AG PLATA SOFT 016mm' Desc='ACW' />
+	<Board id='B1' L='2300.00' W='2070.00' Type='1' BrdNo='9291' MatNo='1272' Thickness='16.00' BrdCode='TB.000444' BrdInfo='136161114' Qty='10' LTrim='5.00' RTrim='5.00' TTrim='5.00' BTrim='5.00' Cost='476.100000' CostMQ='100.000000' MatCode='MEL AG PLATA SOFT 016mm' Grain='0' UseFirst='1'/>
+	<Board id='B2' L='3100.00' W='2070.00' Type='1' BrdNo='9295' MatNo='1272' Thickness='16.00' BrdCode='TB.000448' BrdInfo='136161001' Qty='25' LTrim='5.00' RTrim='5.00' TTrim='5.00' BTrim='5.00' Cost='641.700000' CostMQ='100.000000' MatCode='MEL AG PLATA SOFT 016mm' Grain='0' UseFirst='1'/>
+	<Board id='B3' L='2800.00' W='2070.00' Type='1' BrdNo='9294' MatNo='1272' Thickness='16.00' BrdCode='TB.000447' BrdInfo='136160098' Qty='25' LTrim='5.00' RTrim='5.00' TTrim='5.00' BTrim='5.00' Cost='579.600000' CostMQ='100.000000' MatCode='MEL AG PLATA SOFT 016mm' Grain='0' UseFirst='1'/>
+	<SendOptions DropL='6000.00' DropH='6000.00' />
+	<Param Algo='2' LR='1' SR='1' SHC='1' ZC='4' DRP='1'>
+		<OptiParam ver='6' TimeWeight='1' PatternRed='0' OverPrRed='0' LRPen='0' SRPen='30' SHCPen='10' LHCPen='0' ZCPen='80' TRound='20' TBVCycle='180' RunLevel='0' TrigLev='500' HCTrigLev='300' ZCTrigLev='300' PreProcSize='30' SQTrigger='20' PattOrd='102' SawEff='80' TimeTrigHV='0' TimeTrigLV='0' SQPar='15' AlgoFlags='9' NoAbbaPen='0' LowDimPen='0' LowDimPenNoRot='0' SplitXml='0' LowPriorityCycles='0'/>
+		<OverParam NumConstaints='7' NumConstrParts='4' NumConstrBoards='3' NumConstrBalance='0' DeltaSol='10000000' MaxOverParts='0' MaxOverArea='0' MaxOverPieces='0'/>
+		<AddParam NoTensionStripH='0.00' NoTensionTrimDim='0.00' NoTensionOffset='0.00' NoTensionPieceL='0.00' NoTensionPieceW='0.00' NoTensionMinSizeFirst='0.00' MinLenTension='0.00' MinWidTension='0.00' SawTPar='0' WSRtoLR='0.00' DownloadSawNum='0' ParamLabelingNum='0' DropsSawNum='0' JobTime='1492' JobCost='25007.122222' MinDropForMsg='0.00' WSHCtoLHC='0.00' WRotPattern='0.00' MinDimForAbba='0.00' MinSizeSingleStrip='0.00' MaxSizeEvenStrips='0.00' MaxSizeEvenPiecess='0.00' DecreaseWidth2CrsWork='0.00'/>
+		<DropParam MinLen='300.00' MinWid='300.00' MinArea='0' ExchangeDim='1' HCEmpty='1' DropValue='5' DropTrim='0' MaxLen='0.00' MaxWid='0.00' MaxDays='0' Min1stLen='1500.00' Min1stWid='1000.00' Min1stThk='0.00' Min2ndLen='1000.00' Min2ndWid='500.00' MinDimDropBack='0.00' NoRotBackLoad='0' LargeReintegrate='0' OneReintegrate='0' ForcePosCode1='0' ForcePosCode4='0'/>
+		<StackParam MaxStack='6' HCNotStacked='0' MinDim='0.00' MaxDim='0.00' MaxDimAbs='0.00' MinLength='0.00' MinWidth='0.00' MinQty='0' StackingParNo='0' GreatDimTol='0' MaxCtmQty='10' TolLength='0' TolWidth='0' SortPattern='0' MinDimAuxStation='0.00' MinDimGreatStation='0.00' MaxLenRotForPenalty='0.00' MaxWidRotForPenalty='0.00'/>
+		<BundleParam MinBundle='1' MaxBundle='0' NoPattMinWaste='0'/>
+		<ZCutParam MaxStages='4' MinCutLen='55.00' MaxCutLen='1500.00' MinCutDist='0.00' MaxCutDist='1500.00' MinLastCutDist='0.00' MaxCutsForBlock='100' MaxTotCutsForBlock='100' MinCutTrim='0.00' MaxCutTrim='1500.00' MaxStripZCuts='0' MaxTotStripZCuts='3'/>
+		<LRParam MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='55.00' MaxStripWid='5600.00' MinLastStripWid='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='100' MaxTotStrips='100' MaxStripGroups='100' MinStripGroupWid='55.00' MaxStripGroupWid='5650.00' ZCutsAllowed='1'/>
+		<SRParam MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='55.00' MaxStripLen='5600.00' MinLastStripLen='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='100' MaxTotStrips='100' MaxStripGroups='100' MinStripGroupLen='55.00' MaxStripGroupLen='5650.00' MaxScrapForSplitting='0.00' ZCutsAllowed='1'/>
+		<SHCParam MaxHCLen='1000.00' MinHCLen='0.00' MinBodyLen='1600.00'>
+			<ShortHeadCut MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='55.00' MaxStripLen='5600.00' MinLastStripLen='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='10' MaxTotStrips='100' MaxStripGroups='10' MinStripGroupLen='55.00' MaxStripGroupLen='5650.00' ZCutsAllowed='1'/>
+			<ShortMainBody MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='55.00' MaxStripWid='5600.00' MinLastStripWid='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='100' MaxTotStrips='100' MaxStripGroups='100' MinStripGroupWid='55.00' MaxStripGroupWid='5650.00' ZCutsAllowed='1'/>
+		</SHCParam>
+		<LHCParam MaxHCWid='1700.00' MinHCWid='0.00' MinBodyWid='1500.00'>
+			<LongHeadCut MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='55.00' MaxStripWid='5600.00' MinLastStripWid='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='100' MaxTotStrips='100' MaxStripGroups='100' MinStripGroupWid='55.00' MaxStripGroupWid='5650.00' ZCutsAllowed='0'/>
+			<LongMainBody MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='55.00' MaxStripLen='5600.00' MinLastStripLen='55.00' MaxPartsForStrip='100' MaxTotPartsForStrip='100' MaxStrips='100' MaxTotStrips='100' MaxStripGroups='100' MinStripGroupLen='55.00' MaxStripGroupLen='5650.00' ZCutsAllowed='0'/>
+		</LHCParam>
+	</Param>
+	<DDMParams AlgoTime='0' />
+	<SimulParam Model='0' TimeCost='50000' ModelName='WN   600' SimFlags='0' TypeABBA='0' SawSetup='119' RipSize='5650.00' CrossSize='5600.00' HCSize='5600.00' MinDimLastCut='41.00' MaxBook='120.00' MinWorkingSize='0.00' MaxWorkingSize='0.00' NumBook='0' BookThreshold='30.00' ThickThreshold='8.00' ThickLoad='30' ThickBook='0.00' StripSuperposition='0' SpeedReduction='100' >
+		<Blades Rip='4.80' Cross='4.80' HC='4.80' ZC='4.80' Main='4.80' Groove='4.80' />
+		<Cutters Thick1='12.00' Thick2='18.00' MaxMatThick1='16.00' />
+		<Trims MinDivRip='10.00' MaxDivRip='40.00' OptRip='30.00' ForceRip='0' MinDivCross='10.00' MaxDivCross='40.00' OptCross='30.00' ForceCross='0' HCTrimMax='40.00' HCTrimMin='10.00' HCOptTrim='30.00' HCForceTrim='0' ZMinTrim='10.00' ZMaxTrim='40.00' ZOptTrim='30.00' ZForceTrim='0' TrimAddHC='0.00' TrimAfterHC='0' TrimBeforeHC='0' TrimAddZC='0.00' NcOsiTrim='1'/>
+		<Clamps Nr='8' ClampsSol='0' ClampsInd='0' ClampsTp='0' Dim='80.00' Tol='40.00' ClampsTime='1'>
+			<Clamp pos='70.00'/>
+			<Clamp pos='270.00'/>
+			<Clamp pos='470.00'/>
+			<Clamp pos='2220.00'/>
+			<Clamp pos='2820.00'/>
+			<Clamp pos='3620.00'/>
+			<Clamp pos='4420.00'/>
+			<Clamp pos='5020.00'/>
+		</Clamps>
+		<TMan mask='0' HCRot='12' MBRot='15' StripRot='10' ZCRot='8' TrimEvac='2' DropEvacCoeff='0' PanelLoad='15' BookCoeff='0'/>
+		<FirstAxis SawCarriageOverstroke='1000.00' SawCarriageSpeed='40' SawCarriageReturnSpeed='100' SawCarriageRamp='1' PusherSpeed='25' PusherReturnSpeed='80' PusherRamp='1' PressureBeam='7' LastCutWait='1' SpeedDecThresholdForTrim='20.00' SpeedDecCoeffForTrim='100' SpeedDecCoeffForBook='100' FrontAlignPos='1230.00' FrontAlignTime='8' ExpulInterfPos='800.00' ExpulsionTime='4' SplitUpThreshold='160.00' SideAlignTime='5' BackPos='6150.00' WithdrawalPos='1400.00' MaxAlignDim='2150.00'/>
+		<SecondAxis SawCarriageOverstroke='1000.00' SawCarriageSpeed='80' SawCarriageReturnSpeed='160' SawCarriageRamp='1' PusherSpeed='40' PusherReturnSpeed='95' PusherRamp='1' PressureBeam='8' LastCutWait='5' SpeedDecThresholdForTrim='20.00' SpeedDecCoeffForTrim='100' SpeedDecCoeffForBook='100' FrontAlignPos='900.00' FrontAlignTime='4' ExpulInterfPos='850.00' ExpulsionTime='4' SplitUpThreshold='200.00' TrapdoorTime='1' TrapdoorPos='310.00' TP_PusherStroke='3200.00' TP_MaxCatWid='1500.00' TP_LenPVA='2200.00' TP_Offset='120.00' TP_PosBegin750='-80.00' TP_PosEnd750='370.00' TP_PosStep750='50.00' TP_Distance750='150.00' TP_PosNoInterf='3200.00'/>
+		<Mill Thickness='12.70' NumBook='2' MaxBook='40.00' DimMinLastCut='95.00' DimMin='70.00' Kerf='20.00' TolStart='150.00' TolEnd='400.00' CutLineDist='164.20' WorkSpeed='15' PosSpeed='30'/>
+		<Shuttle Width='2222.00' RampTime='1' LiftTime='1' EmptySpeed='70' LoadedSpeed='40' StoringSpeed='30' SpeedDecCoeffForBook='100' GroupMinWidthForBookMov='80.00' SpeedDecCoeffForNarrowStrips='100' NarrowStripWidthMax='80.00' WithdrawalPos='20.00' TrapdoorOpenPos='510.00' CrossPos='2365.00' WaitingStationPos='4665.00' WaitingStationSize='1650.00' HIntBook='80.00'/>
+		<Transfer RampTime='1' EmptySpeed='40' LoadedSpeed='25' SpeedDecCoeffForBook='100' GroupMinWidthForBookMov='80.00' SpeedDecCoeffForNarrowStrips='100' NarrowStripWidthMax='80.00' TrapdoorInPos='4512.00' TrapdoorOutPos='4385.00' CrossPos='2300.00' RollerSize='80.00' RollerTime='1' PreWStationSize='2200.00' TotalSize='5080.00' LiftTime='1' Roller1Pos='400.00' MinLengthTras='0.00' MinWidthTrasBack='0.00'/>
+		<LiftTable MaxLoadingHeight='0.00' SetupTime='5' ThinMatLoadTime='10' WithdrawalSpeed='30' ThinMatWithdrawalSpeed='15' WithdrawalPos='3300.00' PushingPointsTime='5'/>
+		<Vacuum LoadingTimeForFirstThickPanel='10' ThickPanelLoadingTime='8' ThickPanelDeltaTime='2' LoadingTimeForFirstThinPanel='8' ThinPanelLoadingTime='6' ThinPanelDeltaTime='1' VacuumInterferencePos='1800.00' BookWithdrawalPos='6400.00' WithdrawalSpeed='30' VacumLeavePusherTakeDistance='55000'/>
+		<TurningTable FixedTime='30' RotationTime='20' SawLengthIncrease='2150.00' IncreaseForRotation='700.00' FrontAlignerPos='2920.00' DoubleAligner='0' FirstAlignerPos='3600.00' SecondAlignerPos='550.00' AlignersDistance='2950.00' LenTable='4670.00' WidTable='2065.00'/>
+		<Nesting SafetyClampTrim='0.00' PcsTrimOffset='0.00'/>
+	</SimulParam>
+	<Solution NPatterns='3' NStackQueue='-1' TotTime='17' Worked='0' NPieces='4' PercLost='10.636%'
+		TCut='1194' TLongMB='488' TCrossMB='706' TMan='347' 
+		CutLen1='700650' TCutLen1='1355490' NCycl='3' Prod='38291470' HProd='38291470' 
+		Lost='4557530' Kerf='650635' Trim='392400' Scrap='3514495' >
+		<Pattern id='S1' BrdNo='B1' Rep='7' Cyc='1' UL='2175.00' UW='2011.80' 
+			TCyc='255' TStart='0' TStop='255' TMan='131' TLongMB='159' TCrossMB='96' 
+			CutLen1='109140' Prod='30541350' HProd='30541350' 
+			Lost='2785650' Kerf='366710' Trim='305200' Scrap='2113740' 
+			Str='L(Y,(X,1),(X,1))'
+			Chk='4389'>
+		</Pattern>
+		<Pattern id='S2' BrdNo='B1' Rep='1' Cyc='1' UL='2063.00' UW='1884.00' 
+			TCyc='270' TStart='255' TStop='435' TMan='29' TLongMB='54' TCrossMB='126' 
+			CutLen1='185810' Prod='3837180' HProd='3837180' 
+			Lost='923820' Kerf='89189' Trim='43600' Scrap='791031' 
+			Str='S(X,(Y,2,2,2,2,2,2))'
+			Chk='5782'>
+		</Pattern>
+		<Pattern id='S3' BrdNo='B1' Rep='1' Cyc='1' UL='2083.00' UW='1952.20' 
+			TCyc='849' TStart='435' TStop='1194' TMan='187' TLongMB='275' TCrossMB='484' 
+			CutLen1='405700' Prod='3912940' HProd='3912940' 
+			Lost='848060' Kerf='194736' Trim='43600' Scrap='609724' 
+			Str='L(Y,(X,2),(X,4),(X,4),(X,4),(X,4),(X,4),(X,4),(X,4),(X,3),(X,3),(X,3),(X,3),(X,3),(X,3),(X,3))'
+			Chk='29535'>
+		</Pattern>
+		<Piece N='1' L='2175.00' W='1003.50' Q='14' qMin='14' >
+			<Pid id='P1'/>
+			<Sid id='S1' qP1='14' />
+			<MatCost><Currency>3332.700000</Currency></MatCost>
+			<CutCost><Currency>4427.083333</Currency></CutCost>
+			<UCost><Currency>554.270238</Currency></UCost>
+		</Piece>
+		<Piece N='2' L='2063.00' W='310.00' Q='7' qMin='7' >
+			<Pid id='P2'/>
+			<Sid id='S2' qP2='6' />
+			<Sid id='S3' qP2='1' />
+			<MatCost><Currency>553.913673</Currency></MatCost>
+			<CutCost><Currency>4071.605478</Currency></CutCost>
+			<UCost><Currency>660.788450</Currency></UCost>
+		</Piece>
+		<Piece N='3' L='2083.00' W='130.00' Q='7' qMin='7' >
+			<Pid id='P3'/>
+			<Sid id='S3' qP3='7' />
+			<MatCost><Currency>230.635234</Currency></MatCost>
+			<CutCost><Currency>6179.462898</Currency></CutCost>
+			<UCost><Currency>915.728305</Currency></UCost>
+		</Piece>
+		<Piece N='4' L='2072.00' W='95.00' Q='7' qMin='7' >
+			<Pid id='P4'/>
+			<Sid id='S3' qP4='7' />
+			<MatCost><Currency>167.651093</Currency></MatCost>
+			<CutCost><Currency>6051.014957</Currency></CutCost>
+			<UCost><Currency>888.380864</Currency></UCost>
+		</Piece>
+		<BrdInfo BrdId='B1' QUsed='9' Prod='38291470' DropA='0' Lost='4557530'/>
+		<BrdInfo BrdId='B2' QUsed='0' Prod='0' DropA='0' Lost='0'/>
+		<BrdInfo BrdId='B3' QUsed='0' Prod='0' DropA='0' Lost='0'/>
+		<PattInfo name='04756565.001' Rep='7' BrdNo='B1' BrdType='1'/>
+		<PattInfo name='04756565.002' Rep='1' BrdNo='B1' BrdType='1'/>
+		<PattInfo name='04756565.003' Rep='1' BrdNo='B1' BrdType='1'/>
+	</Solution>
+</CutList>
