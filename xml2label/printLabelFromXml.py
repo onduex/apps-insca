@@ -18,7 +18,7 @@ def main():
     UniqueUsedBoardData = {}
     ListUniqueUsedBoardData = []
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/04159899.xml')
     root = tree.getroot()
     for child in root:
         # print(child.tag)
