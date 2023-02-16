@@ -143,11 +143,22 @@
     </table>
 </div2>
 </br>
+
 <div class="row">
     <tablero>
         DESCARGA  DE PILAS
     </tablero>
+    <tabla>
+    <tbody>
+        {% for downloadstack in Downloadstack %}
+        <tr>
+            <span>{{ downloadstack['Stack'] }}</span>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </tabla>
 </div>
+
 </br>
 </br>
 <div class="row">
@@ -192,7 +203,6 @@
                     <span>{{ part['W'] }}</span>
                 </td>
             </tr>
-            
             {% endfor %}
         </tbody>
     </table>

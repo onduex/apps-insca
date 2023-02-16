@@ -9,24 +9,21 @@ import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
 
+UniquePattern = {}
+UniquePatternList = []
+UniqueUsedBoardData = {}
+ListUniqueUsedBoardData = []
+UniqueUsedPartData = {}
+ListUniqueUsedPartData = []
+DownloadStack = {}
+ListDownloadStack = []
+ListPiecePerPattern = []
 
 @xw.sub
 def main():
 
     # Usar pp.print()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
-
-    UniquePattern = {}
-    UniquePatternList = []
-
-    UniqueUsedBoardData = {}
-    ListUniqueUsedBoardData = []
-
-    UniqueUsedPartData = {}
-    ListUniqueUsedPartData = []
-
-    DownloadStack = {}
-    ListPiecePerPattern = []
 
     tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
     root = tree.getroot()
@@ -81,11 +78,9 @@ def main():
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
-        ListPiecePerPattern.clear()
-        DownloadStack.update({
+        DownloadStack = ({
             'Stack': pattern.get('id'),
             })
-        
         for piece in child.findall('Piece'):
             for sid in piece.iter('Sid'):
                 if pattern.get('id') == sid.attrib['id']:
@@ -93,7 +88,8 @@ def main():
                     DownloadStack.update({
                         'Pieces': ListPiecePerPattern,
                         })
-        print(DownloadStack)
+        pp.pprint(DownloadStack)
+        ListPiecePerPattern.clear()
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
@@ -103,6 +99,7 @@ def main():
                      "code": code,  
                      "boards": ListUniqueUsedBoardData,
                      "parts": ListUniqueUsedPartData,
+                     # "downloadstack": DownloadStack,
                      }
     html_out = template.render(template_vars)
     HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
@@ -110,9 +107,9 @@ def main():
 
     wb = xw.Book.caller()
     sheet = wb.sheets[0]
-    sheet["A1"].value = 'Número de patrones: ', child.attrib['NPatterns']
-    sheet["A2"].value = 'Patrones diferentes: ', str(UniquePattern)
+    sheet["O1"].value = 'Número de patrones: ', child.attrib['NPatterns']
+    sheet["O2"].value = 'Patrones diferentes: ', str(UniquePattern)
 
 if __name__ == "__main__":
-    xw.Book("test.xlsm").set_mock_caller()
+    xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
     main()
