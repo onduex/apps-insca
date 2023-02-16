@@ -25,7 +25,6 @@ def main():
     tree = ET.parse('C:/vs-projects/apps-insca/xml2label/04756565.xml')
     root = tree.getroot()
     for child in root:
-        # print(child.tag)
         if child.tag == 'Solution':
             print('Número de patrones: ', child.attrib['NPatterns'])
         if child.tag == 'Tx':
@@ -33,7 +32,7 @@ def main():
         if child.tag == 'Material':
             code = child.attrib['Code']
 
-    # Cantidad de los tableros entero usados 
+    # Cantidad de los tableros enteros usados
     for brdinfo in child.findall('BrdInfo'):
         if brdinfo.get('QUsed') != '0':
             UniquePattern = ({
@@ -41,7 +40,6 @@ def main():
                 'QUsed': brdinfo.attrib['QUsed'],
                 })
             UniquePatternList.append(UniquePattern)
-    # print(UniquePatternList)
     
     # Datos de los tableros enteros usados + Cantidad
     for board in root.findall('Board'):
@@ -57,8 +55,6 @@ def main():
                     'Qty': board.get('Qty') 
                     })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
-    # print('Tableros enteros: ', len(ListUniqueUsedBoardData))
-    # pp.pprint(ListUniqueUsedBoardData)
 
     # Cantidad de piezas cortadas
     for piece in root.iter('Piece'):
