@@ -12,17 +12,23 @@ from jinja2 import Environment, FileSystemLoader
 
 @xw.sub
 def main():
-    pp = pprint.PrettyPrinter(sort_dicts=False, indent=2)
-    
+
+    # Usar pp.print()
+    pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
+
     UniquePattern = {}
     UniquePatternList = []
+
     UniqueUsedBoardData = {}
     ListUniqueUsedBoardData = []
 
     UniqueUsedPartData = {}
     ListUniqueUsedPartData = []
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/04756565.xml')
+    DownloadStack = {}
+    ListPiecePerPattern = []
+
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
     root = tree.getroot()
     for child in root:
         if child.tag == 'Solution':
@@ -72,28 +78,22 @@ def main():
                     'BrdCode': part.get('Desc2'),
                     })
         ListUniqueUsedPartData.append(UniqueUsedPartData)
-    pp.pprint(ListUniqueUsedPartData)
 
-
-    # Cantidad de piezas cortadas por patrón
-    # for piece in root.iter('Piece'):
-    #     for sid in piece.iter('Sid'):
-    #         # print(piece.attrib, sid.attrib)
-    #         for pattern in child.findall('Pattern'):
-    #             if pattern.get('id') == sid.get('id'):
-    #                 print('De la pieza', piece.get('N'), 'de', piece.get('L'), 'X',
-    #                 piece.get('W'),'hay que fabricar', piece.get('Q'), 'con el patrón',
-    #                 pattern.get('id'), 'y el tablero', pattern.get('BrdNo'))
-    #                 # Añadir a diccionario
-    #                 UniqueUsedPartData = ({
-    #                 'id': piece.get('N'),
-    #                 'L': str(piece.get('L')).replace('.', ','),
-    #                 'W': str(piece.get('W')).replace('.', ','),
-    #                 'Qty': piece.get('Q') 
-    #                 })
-    #             ListUniqueUsedPartData.append(UniqueUsedPartData)
-    # print(ListUniqueUsedPartData)
-
+    # Descarga de pilas
+    for pattern in child.findall('Pattern'):
+        ListPiecePerPattern.clear()
+        DownloadStack.update({
+            'Stack': pattern.get('id'),
+            })
+        
+        for piece in child.findall('Piece'):
+            for sid in piece.iter('Sid'):
+                if pattern.get('id') == sid.attrib['id']:
+                    ListPiecePerPattern.append(piece.get('N'))
+                    DownloadStack.update({
+                        'Pieces': ListPiecePerPattern,
+                        })
+        print(DownloadStack)
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
