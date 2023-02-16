@@ -78,18 +78,16 @@ def main():
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
-        DownloadStack = ({
-            'Stack': pattern.get('id'),
+        DownloadStack.update({
+            pattern.get('id'): [],
             })
-        for piece in child.findall('Piece'):
-            for sid in piece.iter('Sid'):
-                if pattern.get('id') == sid.attrib['id']:
-                    ListPiecePerPattern.append(piece.get('N'))
-                    DownloadStack.update({
-                        'Pieces': ListPiecePerPattern,
-                        })
-        pp.pprint(DownloadStack)
-        ListPiecePerPattern.clear()
+
+    for piece in child.findall('Piece'):
+        for sid in piece.iter('Sid'):
+            DownloadStack[sid.attrib['id']].append(piece.get('N'))
+    ListDownloadStack = [{k:v} for k, v in DownloadStack.items()]
+    pp.pprint(ListDownloadStack)
+
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
@@ -99,7 +97,7 @@ def main():
                      "code": code,  
                      "boards": ListUniqueUsedBoardData,
                      "parts": ListUniqueUsedPartData,
-                     # "downloadstack": DownloadStack,
+                     "listdownloadstack": ListDownloadStack,
                      }
     html_out = template.render(template_vars)
     HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
