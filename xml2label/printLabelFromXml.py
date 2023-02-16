@@ -86,8 +86,6 @@ def main():
         for sid in piece.iter('Sid'):
             DownloadStack[sid.attrib['id']].append(piece.get('N'))
     ListDownloadStack = [{k:v} for k, v in DownloadStack.items()]
-    pp.pprint(ListDownloadStack)
-
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
@@ -97,16 +95,16 @@ def main():
                      "code": code,  
                      "boards": ListUniqueUsedBoardData,
                      "parts": ListUniqueUsedPartData,
-                     "listdownloadstack": ListDownloadStack,
+                     "listdownloadstacks": ListDownloadStack,
                      }
     html_out = template.render(template_vars)
     HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
     os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
 
-    wb = xw.Book.caller()
-    sheet = wb.sheets[0]
-    sheet["O1"].value = 'Número de patrones: ', child.attrib['NPatterns']
-    sheet["O2"].value = 'Patrones diferentes: ', str(UniquePattern)
+    # wb = xw.Book.caller()
+    # sheet = wb.sheets[0]
+    # sheet["O1"].value = 'Número de patrones: ', child.attrib['NPatterns']
+    # sheet["O2"].value = 'Patrones diferentes: ', str(UniquePattern)
 
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()

@@ -148,16 +148,20 @@
     <tablero>
         DESCARGA  DE PILAS
     </tablero>
-    <tabla>
+</div>
+<tabla>
     <tbody>
-        {% for listdownloadstack in ListDownloadStack %}
-        <tr>
-            <span>{{ listdownloadstack }}</span>
-        </tr>
+        {% for listdownloadstack in listdownloadstacks %}
+            {% for key, value in listdownloadstack.items() %}
+            <div>
+                <span>{{ key[1:] }}</span>&#160;-->&#160;
+
+                <span>{{ value | join(", ") }}</span></br>
+            </div>
+            {% endfor %}
         {% endfor %}
     </tbody>
-    </tabla>
-</div>
+</tabla>
 
 </br>
 </br>
