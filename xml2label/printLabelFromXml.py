@@ -7,7 +7,7 @@ import xlwings as xw
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-from generatePanelsCsv import GeneratePanelsCsv
+from xml2label.generatePiecesCsv import GeneratePanelsCsv, GeneratePiecesCsv
 from datetime import date
 from datetime import datetime
 
@@ -24,11 +24,12 @@ def main():
     ListDownloadStack = []
 
     ListUniqueUsedBoardDataForCsv = []
+    ListUniqueUsedPartDataForCsv = []
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/docs/03964113.xml')
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/docs/04756565.xml')
     root = tree.getroot()
     for child in root:
         if child.tag == 'Solution':
@@ -92,33 +93,48 @@ def main():
                     })
         ListUniqueUsedPartData.append(UniqueUsedPartData)
 
+    # Cantidad de piezas cortadas para CSV
+    for part in root.findall('Part'):
+        # Añadir a diccionario
+        UniqueUsedPartDataForCsv = ({
+        'ID': part.get('id'),
+        'LARGO': str(part.get('L')[:-3]),
+        'ANCHO': str(part.get('W')[:-3]),
+        'CANT': part.get('qMin'),
+        'CODE': part.get('Code'),
+        
+
+        })
+        ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
+    
+
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
         DownloadStack.update({
             pattern.get('id'): [],
             })
-
     for piece in child.findall('Piece'):
         for sid in piece.iter('Sid'):
             DownloadStack[sid.attrib['id']].append(piece.get('N'))
     ListDownloadStack = [{k:v} for k, v in DownloadStack.items()]
 
     # Definición de plantilla y variables
-    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
-    template = environment.get_template('informe.html')    
-    template_vars = {"title" : root.get('name') ,
-                     "date": date,
-                     "code": code,  
-                     "boards": ListUniqueUsedBoardData,
-                     "parts": ListUniqueUsedPartData,
-                     "listdownloadstacks": ListDownloadStack,
-                     }
-    html_out = template.render(template_vars)
-    HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
-    os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
+    # environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
+    # template = environment.get_template('informe.html')    
+    # template_vars = {"title" : root.get('name') ,
+    #                  "date": date,
+    #                  "code": code,  
+    #                  "boards": ListUniqueUsedBoardData,
+    #                  "parts": ListUniqueUsedPartData,
+    #                  "listdownloadstacks": ListDownloadStack,
+    #                  }
+    # html_out = template.render(template_vars)
+    # HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
+    # os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
 
     # Generar CSVs
     GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
+    GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now)
 
     # wb = xw.Book.caller()
     # sheet = wb.sheets[0]
