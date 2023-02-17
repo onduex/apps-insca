@@ -5,27 +5,30 @@ import os
 import pprint
 import xlwings as xw
 import xml.etree.ElementTree as ET
-
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-
-UniquePattern = {}
-UniquePatternList = []
-UniqueUsedBoardData = {}
-ListUniqueUsedBoardData = []
-UniqueUsedPartData = {}
-ListUniqueUsedPartData = []
-DownloadStack = {}
-ListDownloadStack = []
-ListPiecePerPattern = []
+from generatePanelsCsv import GeneratePanelsCsv
+from datetime import date
+from datetime import datetime
 
 @xw.sub
 def main():
 
-    # Usar pp.print()
+    UniquePattern = {}
+    UniquePatternList = []
+    UniqueUsedBoardData = {}
+    ListUniqueUsedBoardData = []
+    UniqueUsedPartData = {}
+    ListUniqueUsedPartData = []
+    DownloadStack = {}
+    ListDownloadStack = []
+
+    ListUniqueUsedBoardDataForCsv = []
+
+    # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/03964113.xml')
+    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/docs/03964113.xml')
     root = tree.getroot()
     for child in root:
         if child.tag == 'Solution':
@@ -45,10 +48,11 @@ def main():
             UniquePatternList.append(UniquePattern)
     
     # Datos de los tableros enteros usados + Cantidad
+    now = datetime.now()
     for board in root.findall('Board'):
         for rec in UniquePatternList:
             if rec['id'] == board.get('id'):
-                # Añadir a diccionario
+                # Añadir a diccionarios
                 UniqueUsedBoardData = ({
                     'id': board.get('id'),
                     'L': str(board.get('L')).replace('.', ','),
@@ -57,7 +61,19 @@ def main():
                     'QUsed': rec['QUsed'],
                     'Qty': board.get('Qty') 
                     })
+                UniqueUsedBoardDataForCsv = ({
+                    'ID': board.get('id'),
+                    'LARGO': str(board.get('L')[:-3]),
+                    'ANCHO': str(board.get('W')[:-3]),
+                    'CANT': rec['QUsed'],
+                    'MATERIAL': code,
+                    'ESPESOR': str(board.get('Thickness')[:-3]),
+                    'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
+                    'CODIGO': board.get('BrdCode'),
+                    'OC': 'OC/' + now.strftime('%y%m%d/%H%M%S') 
+                    })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
+                ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
 
     # Cantidad de piezas cortadas
     for piece in root.iter('Piece'):
@@ -100,6 +116,9 @@ def main():
     html_out = template.render(template_vars)
     HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
     os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
+
+    # Generar CSVs
+    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
 
     # wb = xw.Book.caller()
     # sheet = wb.sheets[0]
