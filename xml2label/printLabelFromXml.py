@@ -7,7 +7,8 @@ import xlwings as xw
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-from xml2label.generatePiecesCsv import GeneratePanelsCsv, GeneratePiecesCsv
+# from generatePiecesCsv import GeneratePiecesCsv
+from generatePanelsCsv  import GeneratePanelsCsv 
 from datetime import date
 from datetime import datetime
 
@@ -119,22 +120,22 @@ def main():
     ListDownloadStack = [{k:v} for k, v in DownloadStack.items()]
 
     # Definición de plantilla y variables
-    # environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
-    # template = environment.get_template('informe.html')    
-    # template_vars = {"title" : root.get('name') ,
-    #                  "date": date,
-    #                  "code": code,  
-    #                  "boards": ListUniqueUsedBoardData,
-    #                  "parts": ListUniqueUsedPartData,
-    #                  "listdownloadstacks": ListDownloadStack,
-    #                  }
-    # html_out = template.render(template_vars)
-    # HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
-    # os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
+    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
+    template = environment.get_template('informe.html')    
+    template_vars = {"title" : root.get('name') ,
+                     "date": date,
+                     "code": code,  
+                     "boards": ListUniqueUsedBoardData,
+                     "parts": ListUniqueUsedPartData,
+                     "listdownloadstacks": ListDownloadStack,
+                     }
+    html_out = template.render(template_vars)
+    HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
+    os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
 
     # Generar CSVs
     GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
-    GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now)
+    # GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now)
 
     # wb = xw.Book.caller()
     # sheet = wb.sheets[0]

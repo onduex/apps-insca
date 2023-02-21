@@ -19,5 +19,5 @@ def GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now):
     with open(filename, 'w', newline='') as csvfile:
         # creating a csv dict writer object 
         writer = csv.DictWriter(csvfile, delimiter =';', dialect='excel', fieldnames=fields)  
-        writer.writeheader() 
+        # writer.writeheader() 
         writer.writerows(ListUniqueUsedBoardDataForCsv) 
