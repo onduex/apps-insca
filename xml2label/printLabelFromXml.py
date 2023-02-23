@@ -7,8 +7,7 @@ import xlwings as xw
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-# from generatePiecesCsv import GeneratePiecesCsv
-from generatePanelsCsv  import GeneratePanelsCsv 
+from generateCsv import GeneratePanelsCsv
 from datetime import date
 from datetime import datetime
 
@@ -30,13 +29,19 @@ def main():
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
-    tree = ET.parse('C:/vs-projects/apps-insca/xml2label/docs/04756565.xml')
+    wb = xw.Book.caller()
+    sheet = wb.sheets[0]
+    XmlName = str(sheet["A1"].value)
+    UserExcel = str(sheet["C2"].value)
+    ListName = str(sheet["A2"].value)[:-5]
+
+    tree = ET.parse('O:/XmlJob/' + XmlName + '.xml')
     root = tree.getroot()
     for child in root:
         if child.tag == 'Solution':
             print('Número de patrones: ', child.attrib['NPatterns'])
         if child.tag == 'Tx':
-            date = child.attrib['Date']
+            date = child.attrib['Date'][3:]
         if child.tag == 'Material':
             code = child.attrib['Code']
 
@@ -103,8 +108,6 @@ def main():
         'ANCHO': str(part.get('W')[:-3]),
         'CANT': part.get('qMin'),
         'CODE': part.get('Code'),
-        
-
         })
         ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
     
@@ -122,26 +125,25 @@ def main():
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')    
-    template_vars = {"title" : root.get('name') ,
+    template_vars = {"title" : 'OC/' + now.strftime('%y%m%d/%H%M%S'),
                      "date": date,
-                     "code": code,  
+                     "code": code,
+                     "program": root.get('name'),
+                     "listname": ListName,
+                     "userexcel": UserExcel,
                      "boards": ListUniqueUsedBoardData,
                      "parts": ListUniqueUsedPartData,
                      "listdownloadstacks": ListDownloadStack,
                      }
     html_out = template.render(template_vars)
-    HTML(string=html_out).write_pdf('C:/vs-projects/apps-insca/xml2label//templates/report.pdf')
-    os.startfile('C:/vs-projects/apps-insca/xml2label/templates/report.pdf')
+    filename = ('O:/PdfJob/' + 'OC-' + now.strftime('%y%m%d') + '-' + now.strftime('%H%M%S') + '.pdf')
+    HTML(string=html_out).write_pdf(filename)
+    os.startfile(filename)
 
     # Generar CSVs
     GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
     # GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now)
-
-    # wb = xw.Book.caller()
-    # sheet = wb.sheets[0]
-    # sheet["O1"].value = 'Número de patrones: ', child.attrib['NPatterns']
-    # sheet["O2"].value = 'Patrones diferentes: ', str(UniquePattern)
-
+    
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
     main()
