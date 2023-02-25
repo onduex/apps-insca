@@ -5,6 +5,12 @@
         /* Change from the default size of A4 */
         margin: 5mm;
         /* Set margin on each page */
+        @bottom-right{
+        content: counter(page) " / " counter(pages);
+        font-family: Barlow Condensed, sans-serif;
+        font-size: 3.2mm;
+        margin-bottom: 5mm;
+        }
     }
 
     .column {
@@ -18,17 +24,29 @@
         background: #eef1f5;
         display: flex;
         font-family: Barlow Condensed, sans-serif;
+        font-size: 3.2mm;
         justify-content: left;
         padding: 1mm 1mm 1mm 1mm;
     }
 
     div2 {
-        align-content: center;
-        align-items: center;
+        align-content: top;
+        align-items: top;
         display: flex;
         font-family: Barlow Condensed, sans-serif;
-        justify-content: left;
+        font-size: 3.2mm;
+        justify-content: center;
         padding: 1mm 1mm 1mm 1mm;
+    }
+
+    div3 {
+        align-content: top;
+        align-items: top;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        font-family: Barlow Condensed, sans-serif;
+        font-size: 3mm;
     }
 
     tablero {
@@ -37,30 +55,35 @@
         display: flex;
         background: #eef1f5;
         font-family: Barlow Condensed, sans-serif;
-        font-size: 4mm;
+        font-size: 3.2mm;
         padding: 1mm 1mm 1mm 1mm;
     }
 
     thead {
         background: #eef1f5;
         font-family: Barlow Condensed, sans-serif;
-        font-size: 4mm;
+        font-size: 3.2mm;
     }
 
     tbody {
         font-family: Barlow Condensed, sans-serif;
-        font-size: 3.5mm;
+        font-size: 3.2mm;
     }
 
     p {
         font-family: 'BarcodeFont', cursive;
-        font-size: 30pt;
+        font-size: 12mm;
         margin: 0;
         text-align: right;
         vertical-align: center;
         align-items: center;
+        padding: 1mm 1mm 1mm 1mm;
     }
 </style>
+
+<header>
+    <img src="{{ image_path }}" style="height: 15mm; ">
+</header>
 
 <html>
     <div class="row">
@@ -118,12 +141,13 @@
         <thead>
             <tr>
                 <th style="width: 10mm;">Id</th>
-                <th style="width: 15mm; text-align:right;">Disp.</th>
-                <th style="width: 15mm; text-align:right;">Real</th>
-                <th style="width: 25mm; text-align:right;">Largo</th>
-                <th style="width: 25mm; text-align:right;">Ancho</th>
-                <th style="width: 35mm; text-align:right;">Código</th>
-                <th style="width: 50mm; text-align:right;">Barcode</th>
+                <th style="width: 10mm; text-align:right;">Disp.</th>
+                <th style="width: 10mm; text-align:right;">Real</th>
+                <th style="width: 20mm; text-align:right;">Largo</th>
+                <th style="width: 20mm; text-align:right;">Ancho</th>
+                <th style="width: 25mm; text-align:right;">Código</th>
+                <th style="width: 30mm; text-align:center;">Barcode</th>
+                <th style="width: 60mm; text-align:center;">TABLEROS NO PREVISTOS</th>
             </tr>
         </thead>
         <tbody>
@@ -153,8 +177,18 @@
                     <span>{{ board['BrdCode'] }}</span>
                 </td>
                 
-                <td style="text-align:right;">
+                <td style="text-align:center;">
                     <p>{{ board['BrdCode'] }}</p>
+                </td>
+                <td style="border: 0.1mm solid black; text-align:center;">
+                    <html>
+                        <div3 class="row">
+                            Cantidad &#160;&#160&#160;&#160;&#160;&#160;&#160; Largo &#160;&#160;&#160;&#160;&#160;&#160;&#160; Ancho
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div3>
+                    </html>
                 </td>
             </tr>
             {% endfor %}

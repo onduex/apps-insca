@@ -76,8 +76,8 @@ def main():
                 # Añadir a diccionarios
                 UniqueUsedBoardData = ({
                     'id': board.get('id'),
-                    'L': str(board.get('L')).replace('.', ','),
-                    'W': str(board.get('W')).replace('.', ','),
+                    'L': str(board.get('L')).replace('.', ',')[:-3],
+                    'W': str(board.get('W')).replace('.', ',')[:-3],
                     'BrdCode': board.get('BrdCode'),
                     'QUsed': rec['QUsed'],
                     'Qty': board.get('Qty') 
@@ -148,7 +148,8 @@ def main():
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')    
-    template_vars = {"title" : 'OC/' + now.strftime('%y%m%d/%H%M%S'),
+    template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
+                     "title": 'OC/' + now.strftime('%y%m%d/%H%M%S'),
                      "date": date,
                      "code": code,
                      "program": root.get('name'),
