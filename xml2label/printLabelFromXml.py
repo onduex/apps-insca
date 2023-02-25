@@ -4,6 +4,7 @@
 import os
 import pprint
 import xlwings as xw
+from xlwings import Range, constants
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
@@ -22,9 +23,10 @@ def main():
     ListUniqueUsedPartData = []
     DownloadStack = {}
     ListDownloadStack = []
-
     ListUniqueUsedBoardDataForCsv = []
     ListUniqueUsedPartDataForCsv = []
+    ListExcelDict = []
+    d = {}
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -34,6 +36,18 @@ def main():
     XmlName = str(sheet["A1"].value)
     UserExcel = str(sheet["C2"].value)
     ListName = str(sheet["A2"].value)[:-5]
+
+    for i in range(6, wb.sheets[0].range('F' + str(wb.sheets[0].cells.last_cell.row)).end('up').row + 1):
+        ExcelDict = ({
+            'fila': i,
+            'colF': sheet["F" + str(i)].value,
+            'colJ': sheet["J" + str(i)].value,
+            'colO': sheet["O" + str(i)].value,
+            'colP': sheet["P" + str(i)].value,
+            'colQ': sheet["Q" + str(i)].value,
+            })
+        ListExcelDict.append(ExcelDict)
+    # pp.pprint(ListExcelDict)
 
     tree = ET.parse('O:/XmlJob/' + XmlName + '.xml')
     root = tree.getroot()
@@ -83,6 +97,7 @@ def main():
                 ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
 
     # Cantidad de piezas cortadas
+    
     for piece in root.iter('Piece'):
         # Añadir a diccionario
         UniqueUsedPartData = ({
@@ -93,10 +108,18 @@ def main():
         })
         for part in root.findall('Part'):
             if piece.get('N') == part.get('Code'):
-                UniqueUsedPartData.update({
-                    'Op': part.get('Desc1'),
-                    'BrdCode': part.get('Desc2'),
-                    })
+                # Buscar en excel columna F el código
+                key = 'colF'
+                val = part.get('Desc2')
+                d = next(filter(lambda d: d.get(key) == val, ListExcelDict), None)
+                if d != None:
+                    # print(d)
+                    UniqueUsedPartData.update({
+                        'Op': part.get('Desc1'),
+                        'BrdCode': part.get('Desc2'),
+                        'Ruta': d.get('colJ'),
+                        'Semana': d.get('colO'),
+                        })
         ListUniqueUsedPartData.append(UniqueUsedPartData)
 
     # Cantidad de piezas cortadas para CSV
