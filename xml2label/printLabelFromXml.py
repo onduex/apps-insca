@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import os
+import time
 import pprint
 import xlwings as xw
 from xlwings import Range, constants
@@ -49,7 +50,15 @@ def main():
         ListExcelDict.append(ExcelDict)
     # pp.pprint(ListExcelDict)
 
-    tree = ET.parse('O:/XmlJob/' + XmlName + '.xml')
+    # Fecha creación XML
+    path = 'O:/XmlJob/' + XmlName + '.xml'
+    ti_m = os.path.getctime(path)
+    m_ti = time.ctime(ti_m)
+    t_obj = time.strptime(m_ti)
+    T_stamp = time.strftime('%y%m%d/%H%M%S', t_obj)
+    T_stamp2 = time.strftime('%y%m%d-%H%M%S', t_obj)
+
+    tree = ET.parse(path)
     root = tree.getroot()
     for child in root:
         if child.tag == 'Solution':
@@ -70,7 +79,6 @@ def main():
             UniquePatternList.append(UniquePattern)
     
     # Datos de los tableros enteros usados + Cantidad
-    now = datetime.now()
     for board in root.findall('Board'):
         for rec in UniquePatternList:
             if rec['id'] == board.get('id'):
@@ -92,7 +100,7 @@ def main():
                     'ESPESOR': str(board.get('Thickness')[:-3]),
                     'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
                     'CODIGO': board.get('BrdCode'),
-                    'OC': 'OC/' + now.strftime('%y%m%d/%H%M%S') 
+                    'OC': 'OC/' + T_stamp 
                     })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
                 ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
@@ -130,15 +138,19 @@ def main():
         'ID': part.get('id'),
         'LARGO': str(part.get('L')[:-3]),
         'ANCHO': str(part.get('W')[:-3]),
-        'CANT': part.get('qMin'),
         'CODE': part.get('Code'),
         'OT': part.get('Desc1'),
         'CODCONF': part.get('Desc2'),
         'MATERIAL': part.get('Material'),
         'ESPESOR': espesor[:-3],
         'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
-        'OC': 'OC/' + now.strftime('%y%m%d/%H%M%S')
+        'OC': 'OC/' + T_stamp
         })
+        for piece in root.iter('Piece'):
+            if part.get('Code') == piece.get('N'):
+                UniqueUsedPartDataForCsv.update({
+                        'CANT': piece.get('Q'),
+                        })
         ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
     
 
@@ -156,7 +168,7 @@ def main():
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')    
     template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
-                     "title": 'OC/' + now.strftime('%y%m%d/%H%M%S'),
+                     "title": 'OC/' + T_stamp,
                      "date": date,
                      "code": code,
                      "program": root.get('name'),
@@ -167,13 +179,13 @@ def main():
                      "listdownloadstacks": ListDownloadStack,
                      }
     html_out = template.render(template_vars)
-    filename = ('O:/PdfJob/' + 'OC-' + now.strftime('%y%m%d') + '-' + now.strftime('%H%M%S') + '.pdf')
+    filename = ('O:/PdfJob/' + 'OC-' + T_stamp2 + '.pdf')
     HTML(string=html_out).write_pdf(filename)
     os.startfile(filename)
 
     # Generar CSVs
-    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
-    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, now)
+    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, T_stamp2)
+    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, T_stamp2)
     
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
