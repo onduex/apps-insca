@@ -8,7 +8,7 @@ from xlwings import Range, constants
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-from generateCsv import GeneratePanelsCsv
+from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
 from datetime import date
 from datetime import datetime
 
@@ -58,6 +58,7 @@ def main():
             date = child.attrib['Date'][3:]
         if child.tag == 'Material':
             code = child.attrib['Code']
+            espesor = child.attrib['Thickness']
 
     # Cantidad de los tableros enteros usados
     for brdinfo in child.findall('BrdInfo'):
@@ -131,6 +132,12 @@ def main():
         'ANCHO': str(part.get('W')[:-3]),
         'CANT': part.get('qMin'),
         'CODE': part.get('Code'),
+        'OT': part.get('Desc1'),
+        'CODCONF': part.get('Desc2'),
+        'MATERIAL': part.get('Material'),
+        'ESPESOR': espesor[:-3],
+        'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
+        'OC': 'OC/' + now.strftime('%y%m%d/%H%M%S')
         })
         ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
     
@@ -166,7 +173,7 @@ def main():
 
     # Generar CSVs
     GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now)
-    # GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now)
+    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, now)
     
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()

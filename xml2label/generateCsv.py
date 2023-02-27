@@ -23,7 +23,7 @@ def GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, now):
         writer.writerows(ListUniqueUsedBoardDataForCsv)
 
 
-def GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now):
+def GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, now):
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -32,12 +32,12 @@ def GeneratePiecesCsv(ListUniqueUsedBoardDataForCsv, now):
     fields = ['ID', 'LARGO', 'ANCHO', 'CANT', 'CODE', 'OT', 'CODCONF', 'MATERIAL', 'ESPESOR', 'CATEGORIA', 'OC']
 
     # name of csv file 
-    filename = 'C:/vs-projects/apps-insca/xml2label/docs/' + 'Piezas-' + now.strftime('%y%m%d') + '-' + now.strftime('%H%M%S') + '.csv'
+    filename = 'O:/CSV/piezas/' + 'Piezas-' + now.strftime('%y%m%d') + '-' + now.strftime('%H%M%S') + '.csv'
 
     # writing to csv file 
     with open(filename, 'w', newline='') as csvfile:
         # creating a csv dict writer object 
         writer = csv.DictWriter(csvfile, delimiter =';', dialect='excel', fieldnames=fields)  
         writer.writeheader() 
-        writer.writerows(ListUniqueUsedBoardDataForCsv) 
+        writer.writerows(ListUniqueUsedPartDataForCsv) 
 
