@@ -33,12 +33,12 @@ def main():
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
     wb = xw.Book.caller()
-    sheet = wb.sheets[0]
+    sheet = wb.sheets["SQL ODOO"]
     XmlName = str(sheet["A1"].value)
     UserExcel = str(sheet["C2"].value)
     ListName = str(sheet["A2"].value)[:-5]
 
-    for i in range(6, wb.sheets[0].range('F' + str(wb.sheets[0].cells.last_cell.row)).end('up').row + 1):
+    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         ExcelDict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -51,7 +51,7 @@ def main():
     # pp.pprint(ListExcelDict)
 
     # Fecha creación XML
-    path = 'O:/XmlJob/' + XmlName + '.xml'
+    path = str('O:/XmlJob/' + XmlName + '.xml')
     ti_m = os.path.getctime(path)
     m_ti = time.ctime(ti_m)
     t_obj = time.strptime(m_ti)
