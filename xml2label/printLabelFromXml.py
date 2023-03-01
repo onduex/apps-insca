@@ -37,6 +37,7 @@ def main():
     XmlName = str(sheet["A1"].value)
     UserExcel = str(sheet["C2"].value)
     ListName = str(sheet["A2"].value)[:-5]
+    OrdenCorte = str(sheet["C1"].value)
 
     for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         ExcelDict = ({
@@ -52,12 +53,6 @@ def main():
 
     # Fecha creación XML
     path = str('O:/XmlJob/' + XmlName + '.xml')
-    ti_m = os.path.getctime(path)
-    m_ti = time.ctime(ti_m)
-    t_obj = time.strptime(m_ti)
-    T_stamp = time.strftime('%y%m%d/%H%M%S', t_obj)
-    T_stamp2 = time.strftime('%y%m%d-%H%M%S', t_obj)
-
     tree = ET.parse(path)
     root = tree.getroot()
     for child in root:
@@ -100,7 +95,7 @@ def main():
                     'ESPESOR': str(board.get('Thickness')[:-3]),
                     'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
                     'CODIGO': board.get('BrdCode'),
-                    'OC': 'OC/' + T_stamp 
+                    'OC': OrdenCorte
                     })
                 ListUniqueUsedBoardData.append(UniqueUsedBoardData)
                 ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
@@ -144,7 +139,7 @@ def main():
         'MATERIAL': part.get('Material'),
         'ESPESOR': espesor[:-3],
         'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
-        'OC': 'OC/' + T_stamp
+        'OC': OrdenCorte
         })
         for piece in root.iter('Piece'):
             if part.get('Code') == piece.get('N'):
@@ -168,7 +163,7 @@ def main():
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')    
     template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
-                     "title": 'OC/' + T_stamp,
+                     "title": OrdenCorte,
                      "date": date,
                      "code": code,
                      "program": root.get('name'),
@@ -179,13 +174,13 @@ def main():
                      "listdownloadstacks": ListDownloadStack,
                      }
     html_out = template.render(template_vars)
-    filename = ('O:/PdfJob/' + 'OC-' + T_stamp2 + '.pdf')
+    filename = ('O:/PdfJob/' + OrdenCorte.replace('/', '-') + '.pdf')
     HTML(string=html_out).write_pdf(filename)
     os.startfile(filename)
 
     # Generar CSVs
-    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, T_stamp2)
-    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, T_stamp2)
+    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, OrdenCorte)
+    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, OrdenCorte)
     
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
