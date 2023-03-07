@@ -2,16 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import os
-import time
 import pprint
 import xlwings as xw
-from xlwings import Range, constants
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
 from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
-from datetime import date
-from datetime import datetime
 
 
 @xw.sub
