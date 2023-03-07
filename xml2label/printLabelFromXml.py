@@ -20,6 +20,8 @@ def main():
     list_unique_used_board_data_for_csv = []
     list_unique_used_part_data_for_csv = []
     list_excel_dict = []
+    code = ""
+    espesor = ""
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -107,39 +109,38 @@ def main():
                 # Buscar en excel columna F el código
                 key = 'colF'
                 val = part.get('Desc2')
-                d = next(filter(lambda d: d.get(key) == val, list_excel_dict), None)
-                if d != None:
+                y = next(filter(lambda x: x.get(key) == val, list_excel_dict), None)
+                if y is not None:
                     # print(d)
                     unique_used_part_data.update({
                         'Op': part.get('Desc1'),
                         'BrdCode': part.get('Desc2'),
-                        'Ruta': d.get('colJ'),
-                        'Semana': d.get('colO'),
+                        'Ruta': y.get('colJ'),
+                        'Semana': y.get('colO'),
                         })
         list_unique_used_part_data.append(unique_used_part_data)
 
     # Cantidad de piezas cortadas para CSV
     for part in root.findall('Part'):
         # Añadir a diccionario
-        unique_used_part_dataForCsv = ({
-        'ID': part.get('id'),
-        'LARGO': str(part.get('L')[:-3]),
-        'ANCHO': str(part.get('W')[:-3]),
-        'CODE': part.get('Code'),
-        'OT': part.get('Desc1'),
-        'CODCONF': part.get('Desc2'),
-        'MATERIAL': part.get('Material'),
-        'ESPESOR': espesor[:-3],
-        'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
-        'OC': orden_corte
-        })
+        unique_used_part_data_for_csv = ({
+            'ID': part.get('id'),
+            'LARGO': str(part.get('L')[:-3]),
+            'ANCHO': str(part.get('W')[:-3]),
+            'CODE': part.get('Code'),
+            'OT': part.get('Desc1'),
+            'CODCONF': part.get('Desc2'),
+            'MATERIAL': part.get('Material'),
+            'ESPESOR': espesor[:-3],
+            'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
+            'OC': orden_corte
+            })
         for piece in root.iter('Piece'):
             if part.get('Code') == piece.get('N'):
-                unique_used_part_dataForCsv.update({
+                unique_used_part_data_for_csv.update({
                         'CANT': piece.get('Q'),
                         })
-        list_unique_used_part_data_for_csv.append(unique_used_part_dataForCsv)
-
+        list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
@@ -173,6 +174,7 @@ def main():
     # Generar CSVs
     GeneratePanelsCsv(list_unique_used_board_data_for_csv, orden_corte)
     GeneratePiecesCsv(list_unique_used_part_data_for_csv, orden_corte)
+
 
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
