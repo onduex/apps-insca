@@ -13,6 +13,7 @@ from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
 from datetime import date
 from datetime import datetime
 
+
 @xw.sub
 def main():
 
@@ -72,7 +73,7 @@ def main():
                 'QUsed': brdinfo.attrib['QUsed'],
                 })
             UniquePatternList.append(UniquePattern)
-    
+
     # Datos de los tableros enteros usados + Cantidad
     for board in root.findall('Board'):
         for rec in UniquePatternList:
@@ -84,7 +85,7 @@ def main():
                     'W': str(board.get('W')).replace('.', ',')[:-3],
                     'BrdCode': board.get('BrdCode'),
                     'QUsed': rec['QUsed'],
-                    'Qty': board.get('Qty') 
+                    'Qty': board.get('Qty')
                     })
                 UniqueUsedBoardDataForCsv = ({
                     'ID': board.get('id'),
@@ -101,14 +102,14 @@ def main():
                 ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
 
     # Cantidad de piezas cortadas
-    
+
     for piece in root.iter('Piece'):
         # Añadir a diccionario
         UniqueUsedPartData = ({
         'id': piece.get('N'),
         'L': str(piece.get('L')).replace('.', ','),
         'W': str(piece.get('W')).replace('.', ','),
-        'Qty': piece.get('Q') 
+        'Qty': piece.get('Q')
         })
         for part in root.findall('Part'):
             if piece.get('N') == part.get('Code'):
@@ -147,7 +148,7 @@ def main():
                         'CANT': piece.get('Q'),
                         })
         ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
-    
+
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
@@ -161,7 +162,7 @@ def main():
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
-    template = environment.get_template('informe.html')    
+    template = environment.get_template('informe.html')
     template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
                      "title": OrdenCorte,
                      "date": date,
@@ -181,7 +182,7 @@ def main():
     # Generar CSVs
     GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, OrdenCorte)
     GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, OrdenCorte)
-    
+
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
     main()
