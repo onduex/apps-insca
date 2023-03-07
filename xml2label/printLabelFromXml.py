@@ -17,17 +17,17 @@ from datetime import datetime
 @xw.sub
 def main():
 
-    UniquePattern = {}
-    UniquePatternList = []
-    UniqueUsedBoardData = {}
-    ListUniqueUsedBoardData = []
-    UniqueUsedPartData = {}
-    ListUniqueUsedPartData = []
-    DownloadStack = {}
-    ListDownloadStack = []
-    ListUniqueUsedBoardDataForCsv = []
-    ListUniqueUsedPartDataForCsv = []
-    ListExcelDict = []
+    unique_pattern = {}
+    unique_pattern_list = []
+    unique_used_board_data = {}
+    list_unique_used_board_data = []
+    unique_used_part_data = {}
+    list_unique_used_part_data = []
+    download_stack = {}
+    list_download_stack = []
+    list_unique_used_board_data_for_csv = []
+    list_unique_used_part_data_for_csv = []
+    list_excel_dict = []
     d = {}
 
     # Usar pp.pprint()
@@ -35,13 +35,14 @@ def main():
 
     wb = xw.Book.caller()
     sheet = wb.sheets["SQL ODOO"]
-    XmlName = str(sheet["A1"].value)
-    UserExcel = str(sheet["C2"].value)
-    ListName = str(sheet["A2"].value)[:-5]
-    OrdenCorte = str(sheet["C1"].value)
+    xml_name = str(sheet["A1"].value)
+    user_excel = str(sheet["C2"].value)
+    list_name = str(sheet["A2"].value)[:-5]
+    orden_corte = str(sheet["C1"].value)
 
-    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
-        ExcelDict = ({
+    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row))
+                   .end('up').row + 1):
+        excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
             'colJ': sheet["J" + str(i)].value,
@@ -49,11 +50,11 @@ def main():
             'colP': sheet["P" + str(i)].value,
             'colQ': sheet["Q" + str(i)].value,
             })
-        ListExcelDict.append(ExcelDict)
-    # pp.pprint(ListExcelDict)
+        list_excel_dict.append(excel_dict)
+    # pp.pprint(list_excel_dict)
 
     # Fecha creación XML
-    path = str('O:/XmlJob/' + XmlName + '.xml')
+    path = str('O:/XmlJob/' + xml_name + '.xml')
     tree = ET.parse(path)
     root = tree.getroot()
     for child in root:
@@ -68,18 +69,18 @@ def main():
     # Cantidad de los tableros enteros usados
     for brdinfo in child.findall('BrdInfo'):
         if brdinfo.get('QUsed') != '0':
-            UniquePattern = ({
+            unique_pattern = ({
                 'id': brdinfo.attrib['BrdId'],
                 'QUsed': brdinfo.attrib['QUsed'],
                 })
-            UniquePatternList.append(UniquePattern)
+            unique_pattern_list.append(unique_pattern)
 
     # Datos de los tableros enteros usados + Cantidad
     for board in root.findall('Board'):
-        for rec in UniquePatternList:
+        for rec in unique_pattern_list:
             if rec['id'] == board.get('id'):
                 # Añadir a diccionarios
-                UniqueUsedBoardData = ({
+                unique_used_board_data = ({
                     'id': board.get('id'),
                     'L': str(board.get('L')).replace('.', ',')[:-3],
                     'W': str(board.get('W')).replace('.', ',')[:-3],
@@ -87,7 +88,7 @@ def main():
                     'QUsed': rec['QUsed'],
                     'Qty': board.get('Qty')
                     })
-                UniqueUsedBoardDataForCsv = ({
+                unique_used_board_data_for_csv = ({
                     'ID': board.get('id'),
                     'LARGO': str(board.get('L')[:-3]),
                     'ANCHO': str(board.get('W')[:-3]),
@@ -96,41 +97,40 @@ def main():
                     'ESPESOR': str(board.get('Thickness')[:-3]),
                     'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
                     'CODIGO': board.get('BrdCode'),
-                    'OC': OrdenCorte
+                    'OC': orden_corte
                     })
-                ListUniqueUsedBoardData.append(UniqueUsedBoardData)
-                ListUniqueUsedBoardDataForCsv.append(UniqueUsedBoardDataForCsv)
+                list_unique_used_board_data.append(unique_used_board_data)
+                list_unique_used_board_data_for_csv.append(unique_used_board_data_for_csv)
 
     # Cantidad de piezas cortadas
-
     for piece in root.iter('Piece'):
         # Añadir a diccionario
-        UniqueUsedPartData = ({
-        'id': piece.get('N'),
-        'L': str(piece.get('L')).replace('.', ','),
-        'W': str(piece.get('W')).replace('.', ','),
-        'Qty': piece.get('Q')
+        unique_used_part_data = ({
+            'id': piece.get('N'),
+            'L': str(piece.get('L')).replace('.', ','),
+            'W': str(piece.get('W')).replace('.', ','),
+            'Qty': piece.get('Q')
         })
         for part in root.findall('Part'):
             if piece.get('N') == part.get('Code'):
                 # Buscar en excel columna F el código
                 key = 'colF'
                 val = part.get('Desc2')
-                d = next(filter(lambda d: d.get(key) == val, ListExcelDict), None)
+                d = next(filter(lambda d: d.get(key) == val, list_excel_dict), None)
                 if d != None:
                     # print(d)
-                    UniqueUsedPartData.update({
+                    unique_used_part_data.update({
                         'Op': part.get('Desc1'),
                         'BrdCode': part.get('Desc2'),
                         'Ruta': d.get('colJ'),
                         'Semana': d.get('colO'),
                         })
-        ListUniqueUsedPartData.append(UniqueUsedPartData)
+        list_unique_used_part_data.append(unique_used_part_data)
 
     # Cantidad de piezas cortadas para CSV
     for part in root.findall('Part'):
         # Añadir a diccionario
-        UniqueUsedPartDataForCsv = ({
+        unique_used_part_dataForCsv = ({
         'ID': part.get('id'),
         'LARGO': str(part.get('L')[:-3]),
         'ANCHO': str(part.get('W')[:-3]),
@@ -140,48 +140,48 @@ def main():
         'MATERIAL': part.get('Material'),
         'ESPESOR': espesor[:-3],
         'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
-        'OC': OrdenCorte
+        'OC': orden_corte
         })
         for piece in root.iter('Piece'):
             if part.get('Code') == piece.get('N'):
-                UniqueUsedPartDataForCsv.update({
+                unique_used_part_dataForCsv.update({
                         'CANT': piece.get('Q'),
                         })
-        ListUniqueUsedPartDataForCsv.append(UniqueUsedPartDataForCsv)
+        list_unique_used_part_data_for_csv.append(unique_used_part_dataForCsv)
 
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
-        DownloadStack.update({
+        download_stack.update({
             pattern.get('id'): [],
             })
     for piece in child.findall('Piece'):
         for sid in piece.iter('Sid'):
-            DownloadStack[sid.attrib['id']].append(piece.get('N'))
-    ListDownloadStack = [{k:v} for k, v in DownloadStack.items()]
+            download_stack[sid.attrib['id']].append(piece.get('N'))
+    list_download_stack = [{k:v} for k, v in download_stack.items()]
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')
     template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
-                     "title": OrdenCorte,
+                     "title": orden_corte,
                      "date": date,
                      "code": code,
                      "program": root.get('name'),
-                     "listname": ListName,
-                     "userexcel": UserExcel,
-                     "boards": ListUniqueUsedBoardData,
-                     "parts": ListUniqueUsedPartData,
-                     "listdownloadstacks": ListDownloadStack,
+                     "list_name": list_name,
+                     "user_excel": user_excel,
+                     "boards": list_unique_used_board_data,
+                     "parts": list_unique_used_part_data,
+                     "list_download_stacks": list_download_stack,
                      }
     html_out = template.render(template_vars)
-    filename = ('O:/PdfJob/' + OrdenCorte.replace('/', '-') + '.pdf')
+    filename = ('O:/PdfJob/' + orden_corte.replace('/', '-') + '.pdf')
     HTML(string=html_out).write_pdf(filename)
     os.startfile(filename)
 
     # Generar CSVs
-    GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, OrdenCorte)
-    GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, OrdenCorte)
+    GeneratePanelsCsv(list_unique_used_board_data_for_csv, orden_corte)
+    GeneratePiecesCsv(list_unique_used_part_data_for_csv, orden_corte)
 
 if __name__ == "__main__":
     xw.Book("Plantilla Odoo - Optiplanning.xlsm").set_mock_caller()
