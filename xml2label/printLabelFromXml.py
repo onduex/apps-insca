@@ -12,7 +12,6 @@ from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
 
 @xw.sub
 def main():
-
     unique_pattern_list = []
     list_unique_used_board_data = []
     list_unique_used_part_data = []
@@ -22,6 +21,7 @@ def main():
     list_excel_dict = []
     code = ""
     espesor = ""
+    date = ""
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -34,7 +34,7 @@ def main():
     orden_corte = str(sheet["C1"].value)
 
     for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row))
-                   .end('up').row + 1):
+                              .end('up').row + 1):
         excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -42,7 +42,7 @@ def main():
             'colO': sheet["O" + str(i)].value,
             'colP': sheet["P" + str(i)].value,
             'colQ': sheet["Q" + str(i)].value,
-            })
+        })
         list_excel_dict.append(excel_dict)
     # pp.pprint(list_excel_dict)
 
@@ -65,7 +65,7 @@ def main():
             unique_pattern = ({
                 'id': brdinfo.attrib['BrdId'],
                 'QUsed': brdinfo.attrib['QUsed'],
-                })
+            })
             unique_pattern_list.append(unique_pattern)
 
     # Datos de los tableros enteros usados + Cantidad
@@ -80,7 +80,7 @@ def main():
                     'BrdCode': board.get('BrdCode'),
                     'QUsed': rec['QUsed'],
                     'Qty': board.get('Qty')
-                    })
+                })
                 unique_used_board_data_for_csv = ({
                     'ID': board.get('id'),
                     'LARGO': str(board.get('L')[:-3]),
@@ -91,7 +91,7 @@ def main():
                     'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
                     'CODIGO': board.get('BrdCode'),
                     'OC': orden_corte
-                    })
+                })
                 list_unique_used_board_data.append(unique_used_board_data)
                 list_unique_used_board_data_for_csv.append(unique_used_board_data_for_csv)
 
@@ -117,7 +117,7 @@ def main():
                         'BrdCode': part.get('Desc2'),
                         'Ruta': y.get('colJ'),
                         'Semana': y.get('colO'),
-                        })
+                    })
         list_unique_used_part_data.append(unique_used_part_data)
 
     # Cantidad de piezas cortadas para CSV
@@ -134,23 +134,23 @@ def main():
             'ESPESOR': espesor[:-3],
             'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
             'OC': orden_corte
-            })
+        })
         for piece in root.iter('Piece'):
             if part.get('Code') == piece.get('N'):
                 unique_used_part_data_for_csv.update({
-                        'CANT': piece.get('Q'),
-                        })
+                    'CANT': piece.get('Q'),
+                })
         list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
 
     # Descarga de pilas
     for pattern in child.findall('Pattern'):
         download_stack.update({
             pattern.get('id'): [],
-            })
+        })
     for piece in child.findall('Piece'):
         for sid in piece.iter('Sid'):
             download_stack[sid.attrib['id']].append(piece.get('N'))
-    list_download_stack = [{k:v} for k, v in download_stack.items()]
+    list_download_stack = [{k: v} for k, v in download_stack.items()]
 
     # Definición de plantilla y variables
     environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
