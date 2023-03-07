@@ -13,18 +13,13 @@ from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
 @xw.sub
 def main():
 
-    unique_pattern = {}
     unique_pattern_list = []
-    unique_used_board_data = {}
     list_unique_used_board_data = []
-    unique_used_part_data = {}
     list_unique_used_part_data = []
     download_stack = {}
-    list_download_stack = []
     list_unique_used_board_data_for_csv = []
     list_unique_used_part_data_for_csv = []
     list_excel_dict = []
-    d = {}
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
