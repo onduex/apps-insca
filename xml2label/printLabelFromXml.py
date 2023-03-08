@@ -19,6 +19,7 @@ def main():
     list_unique_used_board_data_for_csv = []
     list_unique_used_part_data_for_csv = []
     list_excel_dict = []
+    list_unique_used_retal_data_for_csv = []
     code = ""
     espesor = ""
     date = ""
@@ -141,6 +142,29 @@ def main():
                     'CANT': piece.get('Q'),
                 })
         list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
+
+    # Cantidad de retales para CSV
+    for part in root.findall('Part'):
+        # Añadir a diccionario
+        unique_used_retal_data_for_csv = ({
+            'CODIGO': part.get('id'),
+            'LARGO': str(part.get('L')[:-3]),
+            'ANCHO': str(part.get('W')[:-3]),
+            'CANT': part.get('Code'),
+            'MATERIAL': part.get('Material'),
+            'ESPESOR': espesor[:-3],
+            'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
+            'OC': orden_corte,
+            'CONCAT': part.get('Desc1'),
+            'COINC': part.get('Desc2'),
+            'DESCRIPCION': part.get('Desc2')
+        })
+        for piece in root.iter('Piece'):
+            if part.get('Code') == piece.get('N'):
+                unique_used_retal_data_for_csv.update({
+                    'CANT': piece.get('Q'),
+                })
+        list_unique_used_retal_data_for_csv.append(unique_used_retal_data_for_csv)
 
     # Descarga de pilas
     for pattern in root.iter('Pattern'):
