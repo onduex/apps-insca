@@ -12,6 +12,8 @@ INSTALACIÓN:
 
     xlwings addin install
 
+Importante orden instalación siguientes programas
+
     C:\vs-projects\apps-insca\docs\msys2-x86_64-20230127.exe
 
     C:\vs-projects\apps-insca\docs\gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe

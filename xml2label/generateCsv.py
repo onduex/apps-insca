@@ -4,8 +4,8 @@
 import csv
 import pprint
 
-def GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, OrdenCorte):
 
+def generate_panels_csv(list_unique_used_board_data_for_csv, orden_corte):
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
@@ -13,18 +13,17 @@ def GeneratePanelsCsv(ListUniqueUsedBoardDataForCsv, OrdenCorte):
     fields = ['ID', 'LARGO', 'ANCHO', 'CANT', 'MATERIAL', 'ESPESOR', 'CATEGORIA', 'CODIGO', 'OC']
 
     # name of csv file 
-    filename = 'O:/CSV/paneles/' + 'Paneles-' + OrdenCorte.replace('/', '-') + '.csv'
+    filename = 'O:/CSV/paneles/' + 'Paneles-' + orden_corte.replace('/', '-') + '.csv'
 
     # writing to csv file 
     with open(filename, 'w', newline='') as csvfile:
         # creating a csv dict writer object 
-        writer = csv.DictWriter(csvfile, delimiter =';', dialect='excel', fieldnames=fields)  
-        writer.writeheader() 
-        writer.writerows(ListUniqueUsedBoardDataForCsv)
+        writer = csv.DictWriter(csvfile, delimiter=';', dialect='excel', fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(list_unique_used_board_data_for_csv)
 
 
-def GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, OrdenCorte):
-
+def generate_pieces_csv(list_unique_used_part_data_for_csv, orden_corte):
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
 
@@ -32,12 +31,11 @@ def GeneratePiecesCsv(ListUniqueUsedPartDataForCsv, OrdenCorte):
     fields = ['ID', 'LARGO', 'ANCHO', 'CANT', 'CODE', 'OT', 'CODCONF', 'MATERIAL', 'ESPESOR', 'CATEGORIA', 'OC']
 
     # name of csv file 
-    filename = 'O:/CSV/piezas/' + 'Piezas-' + OrdenCorte.replace('/', '-') + '.csv'
+    filename = 'O:/CSV/piezas/' + 'Piezas-' + orden_corte.replace('/', '-') + '.csv'
 
     # writing to csv file 
     with open(filename, 'w', newline='') as csvfile:
         # creating a csv dict writer object 
-        writer = csv.DictWriter(csvfile, delimiter =';', dialect='excel', fieldnames=fields)  
-        writer.writeheader() 
-        writer.writerows(ListUniqueUsedPartDataForCsv) 
-
+        writer = csv.DictWriter(csvfile, delimiter=';', dialect='excel', fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(list_unique_used_part_data_for_csv)

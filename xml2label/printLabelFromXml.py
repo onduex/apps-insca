@@ -7,7 +7,7 @@ import xlwings as xw
 import xml.etree.ElementTree as ET
 from weasyprint import HTML
 from jinja2 import Environment, FileSystemLoader
-from generateCsv import GeneratePanelsCsv, GeneratePiecesCsv
+from generateCsv import generate_panels_csv, generate_pieces_csv
 
 
 @xw.sub
@@ -33,8 +33,7 @@ def main():
     list_name = str(sheet["A2"].value)[:-5]
     orden_corte = str(sheet["C1"].value)
 
-    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row))
-                              .end('up').row + 1):
+    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -153,9 +152,9 @@ def main():
     list_download_stack = [{k: v} for k, v in download_stack.items()]
 
     # Definición de plantilla y variables
-    environment = Environment(loader=FileSystemLoader('C:/vs-projects/apps-insca/xml2label/templates/'))
+    environment = Environment(loader=FileSystemLoader('C:/PycharmProjects/apps-insca/xml2label/templates/'))
     template = environment.get_template('informe.html')
-    template_vars = {"image_path": "file:///C:/vs-projects/apps-insca/xml2label/static/images/LogoNegro.png",
+    template_vars = {"image_path": "file:///C:/PycharmProjects/apps-insca/xml2label/static/images/LogoNegro.png",
                      "title": orden_corte,
                      "date": date,
                      "code": code,
@@ -172,8 +171,8 @@ def main():
     os.startfile(filename)
 
     # Generar CSVs
-    GeneratePanelsCsv(list_unique_used_board_data_for_csv, orden_corte)
-    GeneratePiecesCsv(list_unique_used_part_data_for_csv, orden_corte)
+    generate_panels_csv(list_unique_used_board_data_for_csv, orden_corte)
+    generate_pieces_csv(list_unique_used_part_data_for_csv, orden_corte)
 
 
 if __name__ == "__main__":
