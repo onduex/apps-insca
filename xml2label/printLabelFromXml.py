@@ -60,7 +60,7 @@ def main():
             espesor = child.attrib['Thickness']
 
     # Cantidad de los tableros enteros usados
-    for rec in child.findall('BrdInfo'):
+    for rec in root.iter('BrdInfo'):
         if rec.get('QUsed') != '0':
             unique_pattern = ({
                 'id': rec.attrib['BrdId'],
@@ -143,11 +143,11 @@ def main():
         list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
 
     # Descarga de pilas
-    for pattern in child.findall('Pattern'):
+    for pattern in root.iter('Pattern'):
         download_stack.update({
             pattern.get('id'): [],
         })
-    for piece in child.findall('Piece'):
+    for piece in root.iter('Piece'):
         for sid in piece.iter('Sid'):
             download_stack[sid.attrib['id']].append(piece.get('N'))
     list_download_stack = [{k: v} for k, v in download_stack.items()]
