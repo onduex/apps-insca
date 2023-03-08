@@ -115,7 +115,7 @@
             USUARIO
         </div>
         <div class="column">
-            <strong>{{ userexcel }}</strong>
+            <strong>{{ user_excel }}</strong>
         </div>
     </div>
 </html>
@@ -126,7 +126,7 @@
             NUM. PROGRAMA:
         </div>
         <div class="column">
-            <strong><span>{{ program }} / {{ listname }}</span></strong>
+            <strong><span>{{ program }} / {{ list_name }}</span></strong>
         </div>
     </div>
 </html>
@@ -202,10 +202,10 @@
         <strong>DESCARGA  DE PILAS</strong>
     </tablero>
 </div>
-<tabla>
+<table>
     <tbody>
-        {% for listdownloadstack in listdownloadstacks %}
-            {% for key, value in listdownloadstack.items() %}
+        {% for list_download_stack in list_download_stacks %}
+            {% for key, value in list_download_stack.items() %}
             <div>
                 <span>{{ key[1:] }}</span>&#160;-->&#160;
 
@@ -214,7 +214,7 @@
             {% endfor %}
         {% endfor %}
     </tbody>
-</tabla>
+</table>
 </br>
 <div class="row">
     <tablero>
