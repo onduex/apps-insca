@@ -33,7 +33,8 @@ def main():
     list_name = str(sheet["A2"].value)[:-5]
     orden_corte = str(sheet["C1"].value)
 
-    for i in range(6, wb.sheets["SQL ODOO"].range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
+    for i in range(6, wb.sheets["SQL ODOO"].
+                   range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -59,11 +60,11 @@ def main():
             espesor = child.attrib['Thickness']
 
     # Cantidad de los tableros enteros usados
-    for brdinfo in child.findall('BrdInfo'):
-        if brdinfo.get('QUsed') != '0':
+    for rec in child.findall('BrdInfo'):
+        if rec.get('QUsed') != '0':
             unique_pattern = ({
-                'id': brdinfo.attrib['BrdId'],
-                'QUsed': brdinfo.attrib['QUsed'],
+                'id': rec.attrib['BrdId'],
+                'QUsed': rec.attrib['QUsed'],
             })
             unique_pattern_list.append(unique_pattern)
 
