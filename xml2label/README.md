@@ -8,15 +8,15 @@ INSTALACIÓN:
 
     cd C:\Python*\Scripts ó cd C:\Program Files\Python*\Scripts
 
-    pip3 install xlwings pywin32 lxml jinja2 weasyprint
+    pip3 install xlwings pywin32 lxml jinja2 weasyprint requests
 
     xlwings addin install
 
 Importante orden instalación siguientes programas
 
-    C:\vs-projects\apps-insca\docs\msys2-x86_64-20230127.exe
+    C:\\PycharmProjects\apps-insca\docs\msys2-x86_64-20230127.exe
 
-    C:\vs-projects\apps-insca\docs\gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
+    C:\\PycharmProjects\apps-insca\docs\gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
 
 3.- Guardar printLabelFromXml.py en la misma carpeta que el archivo excel xlsm (con macros)
 

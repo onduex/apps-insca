@@ -1,17 +1,32 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import os
 import pprint
-import xlwings as xw
 import xml.etree.ElementTree as ET
-from weasyprint import HTML
+import requests
+import xmlrpc.client
+
+import xlwings as xw
 from jinja2 import Environment, FileSystemLoader
-from generateCsv import generate_panels_csv, generate_pieces_csv
+from weasyprint import HTML
+
+from generateCsv import generate_panels_csv, generate_pieces_csv, generate_retals_csv
 
 
 @xw.sub
 def main():
+
+    # Odoo connection
+    url_list = []
+    url = 'http://mail.insca.com:8199'
+    db = 'preproduccion'
+    username = 'onduex'
+    password = 'tomas2021'
+    common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+    common.version()
+    uid = common.authenticate(db, username, password, {})
+    models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+
     unique_pattern_list = []
     list_unique_used_board_data = []
     list_unique_used_part_data = []
@@ -20,9 +35,7 @@ def main():
     list_unique_used_part_data_for_csv = []
     list_excel_dict = []
     list_unique_used_retal_data_for_csv = []
-    code = ""
-    espesor = ""
-    date = ""
+    code = espesor = date = veta = ""
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -35,7 +48,7 @@ def main():
     orden_corte = str(sheet["C1"].value)
 
     for i in range(6, wb.sheets["SQL ODOO"].
-                   range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
+                              range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -59,6 +72,7 @@ def main():
         if child.tag == 'Material':
             code = child.attrib['Code']
             espesor = child.attrib['Thickness']
+            veta = child.attrib['Grain']
 
     # Cantidad de los tableros enteros usados
     for rec in root.iter('BrdInfo'):
@@ -144,26 +158,23 @@ def main():
         list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
 
     # Cantidad de retales para CSV
-    for part in root.findall('Part'):
+    for retal in root.iter('Drop'):
         # Añadir a diccionario
         unique_used_retal_data_for_csv = ({
-            'CODIGO': part.get('id'),
-            'LARGO': str(part.get('L')[:-3]),
-            'ANCHO': str(part.get('W')[:-3]),
-            'CANT': part.get('Code'),
-            'MATERIAL': part.get('Material'),
+            'CODIGO': 'test',
+            'LARGO': str(retal.get('L')[:-3]),
+            'ANCHO': str(retal.get('W')[:-3]),
+            'CANT': retal.get('Q'),
+            'MATERIAL': code,
             'ESPESOR': espesor[:-3],
-            'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
+            'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
             'OC': orden_corte,
-            'CONCAT': part.get('Desc1'),
-            'COINC': part.get('Desc2'),
-            'DESCRIPCION': part.get('Desc2')
+            'DESCRIPCION': code + ' ' +
+            str(retal.get('L')[:-3]).zfill(4) + 'X' +
+            str(retal.get('W')[:-3]).zfill(4) + 'X' +
+            espesor[:-3].zfill(2) + 'MM',
+            'VETA': veta
         })
-        for piece in root.iter('Piece'):
-            if part.get('Code') == piece.get('N'):
-                unique_used_retal_data_for_csv.update({
-                    'CANT': piece.get('Q'),
-                })
         list_unique_used_retal_data_for_csv.append(unique_used_retal_data_for_csv)
 
     # Descarga de pilas
@@ -193,11 +204,12 @@ def main():
     html_out = template.render(template_vars)
     filename = ('O:/PdfJob/' + orden_corte.replace('/', '-') + '.pdf')
     HTML(string=html_out).write_pdf(filename)
-    os.startfile(filename)
+    # os.startfile(filename)
 
     # Generar CSVs
     generate_panels_csv(list_unique_used_board_data_for_csv, orden_corte)
     generate_pieces_csv(list_unique_used_part_data_for_csv, orden_corte)
+    generate_retals_csv(list_unique_used_retal_data_for_csv, orden_corte)
 
 
 if __name__ == "__main__":
