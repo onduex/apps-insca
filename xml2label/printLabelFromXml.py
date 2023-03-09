@@ -26,6 +26,11 @@ def main():
     common.version()
     uid = common.authenticate(db, username, password, {})
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+    models.execute_kw(db, uid, password, 'product.template', 'check_access_rights', ['read'],
+                      {'raise_exception': False})
+    product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search',
+                                         [[['default_code', 'like', 'RT.']]])
+    print(product_tmpl_ids)
 
     unique_pattern_list = []
     list_unique_used_board_data = []
