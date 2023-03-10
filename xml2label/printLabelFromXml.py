@@ -15,6 +15,17 @@ from generateCsv import generate_panels_csv, generate_pieces_csv, generate_retal
 @xw.sub
 def main():
 
+    used_integers = []
+    unique_pattern_list = []
+    list_unique_used_board_data = []
+    list_unique_used_part_data = []
+    download_stack = {}
+    list_unique_used_board_data_for_csv = []
+    list_unique_used_part_data_for_csv = []
+    list_excel_dict = []
+    list_unique_used_retal_data_for_csv = []
+    code = espesor = date = veta = ""
+
     # Odoo connection
     url_list = []
     url = 'http://mail.insca.com:8199'
@@ -27,19 +38,11 @@ def main():
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     models.execute_kw(db, uid, password, 'product.template', 'check_access_rights', ['read'],
                       {'raise_exception': False})
-    product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search',
+    product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search_read',
                                          [[['default_code', 'like', 'RT.']]])
-    print(product_tmpl_ids)
-
-    unique_pattern_list = []
-    list_unique_used_board_data = []
-    list_unique_used_part_data = []
-    download_stack = {}
-    list_unique_used_board_data_for_csv = []
-    list_unique_used_part_data_for_csv = []
-    list_excel_dict = []
-    list_unique_used_retal_data_for_csv = []
-    code = espesor = date = veta = ""
+    for rec in product_tmpl_ids:
+        used_integers.append(rec['default_code'][3:])
+    print(used_integers)
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
