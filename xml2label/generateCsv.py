@@ -25,7 +25,8 @@ def generate_panels_csv(list_unique_used_board_data_for_csv, orden_corte):
 
 def generate_pieces_csv(list_unique_used_part_data_for_csv, orden_corte):
     # field names 
-    fields = ['ID', 'LARGO', 'ANCHO', 'CANT', 'CODE', 'OT', 'CODCONF', 'MATERIAL', 'ESPESOR', 'CATEGORIA', 'OC']
+    fields = ['ID', 'LARGO', 'ANCHO', 'CANT', 'CODE', 'OT', 'CODCONF',
+              'MATERIAL', 'ESPESOR', 'CATEGORIA', 'OC', 'TIMECOEF']
     # name of csv file 
     filename = 'O:/CSV/piezas/' + 'Piezas-' + orden_corte.replace('/', '-') + '.csv'
     # writing to csv file 

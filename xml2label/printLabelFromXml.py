@@ -3,7 +3,6 @@
 
 import pprint
 import xml.etree.ElementTree as ET
-import requests
 import xmlrpc.client
 
 import xlwings as xw
@@ -53,7 +52,7 @@ def main():
     orden_corte = str(sheet["C1"].value)
 
     for i in range(6, wb.sheets["SQL ODOO"].
-                              range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
+                   range('F' + str(wb.sheets["SQL ODOO"].cells.last_cell.row)).end('up').row + 1):
         excel_dict = ({
             'fila': i,
             'colF': sheet["F" + str(i)].value,
@@ -61,6 +60,7 @@ def main():
             'colO': sheet["O" + str(i)].value,
             'colP': sheet["P" + str(i)].value,
             'colQ': sheet["Q" + str(i)].value,
+            'colR': sheet["R" + str(i)].value,
         })
         list_excel_dict.append(excel_dict)
     # pp.pprint(list_excel_dict)
@@ -153,13 +153,21 @@ def main():
             'MATERIAL': part.get('Material'),
             'ESPESOR': espesor[:-3],
             'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
-            'OC': orden_corte
+            'OC': orden_corte,
         })
         for piece in root.iter('Piece'):
             if part.get('Code') == piece.get('N'):
                 unique_used_part_data_for_csv.update({
                     'CANT': piece.get('Q'),
                 })
+        # Buscar en excel columna R el código
+        key = 'colF'
+        val = part.get('Desc2')
+        y = next(filter(lambda x: x.get(key) == val, list_excel_dict), None)
+        if y is not None:
+            unique_used_part_data_for_csv.update({
+                'TIMECOEF': y.get('colR'),
+            })
         list_unique_used_part_data_for_csv.append(unique_used_part_data_for_csv)
 
     # Cantidad de retales para CSV
