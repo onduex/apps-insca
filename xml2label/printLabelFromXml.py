@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import os
 import pprint
 import xml.etree.ElementTree as ET
 import xmlrpc.client
-
 import xlwings as xw
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
-
 from generateCsv import generate_panels_csv, generate_pieces_csv, generate_retals_csv
 
 
@@ -150,6 +149,7 @@ def main():
             'ID': part.get('id'),
             'LARGO': str(part.get('L')[:-3]),
             'ANCHO': str(part.get('W')[:-3]),
+            'CANT': part.get('Q'),
             'CODE': part.get('Code'),
             'OT': part.get('Desc1'),
             'CODCONF': part.get('Desc2'),
@@ -158,11 +158,6 @@ def main():
             'CATEGORIA': 'PSEMIELABORADO' + ' / ' + 'MADERA ' + code,
             'OC': orden_corte,
         })
-        for piece in root.iter('Piece'):
-            if part.get('Code') == piece.get('N'):
-                unique_used_part_data_for_csv.update({
-                    'CANT': piece.get('Q'),
-                })
         # Buscar en excel columna R el código
         key = 'colF'
         val = part.get('Desc2')

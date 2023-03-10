@@ -12,11 +12,9 @@ INSTALACIÓN:
 
     xlwings addin install
 
-Importante orden instalación siguientes programas
+    C:\PycharmProjects\apps-insca\soft\msys2-x86_64-20230127.exe
 
-    C:\\PycharmProjects\apps-insca\docs\msys2-x86_64-20230127.exe
-
-    C:\\PycharmProjects\apps-insca\docs\gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
+    C:\PycharmProjects\apps-insca\soft\gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
 
 3.- Guardar printLabelFromXml.py en la misma carpeta que el archivo excel xlsm (con macros)
 
