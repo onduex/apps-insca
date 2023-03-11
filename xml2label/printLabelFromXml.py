@@ -13,8 +13,7 @@ from generateCsv import generate_panels_csv, generate_pieces_csv, generate_retal
 
 @xw.sub
 def main():
-
-    used_integers = []
+    list_existing_retals = []
     unique_pattern_list = []
     list_unique_used_board_data = []
     list_unique_used_part_data = []
@@ -23,7 +22,7 @@ def main():
     list_unique_used_part_data_for_csv = []
     list_excel_dict = []
     list_unique_used_retal_data_for_csv = []
-    code = espesor = date = veta = ""
+    code = codigo = espesor = date = veta = ""
 
     # Odoo connection
     url_list = []
@@ -39,9 +38,10 @@ def main():
                       {'raise_exception': False})
     product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search_read',
                                          [[['default_code', 'like', 'RT.']]])
+
     for rec in product_tmpl_ids:
-        used_integers.append(rec['default_code'][3:])
-    print(used_integers)
+        list_existing_retals.append(({'name': rec['name'], 'default_code': rec['default_code']}))
+    print(list_existing_retals)
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -170,9 +170,18 @@ def main():
 
     # Cantidad de retales para CSV
     for retal in root.iter('Drop'):
+        ret_description = (code + ' ' + str(retal.get('L')[:-3]).zfill(4) + 'X' +
+                           str(retal.get('W')[:-3]).zfill(4) + 'X' + espesor[:-3].zfill(2) + 'MM')
+        for rec in list_existing_retals:
+            if ret_description in rec['name']:
+                print(ret_description, rec['default_code'])
+                codigo = rec['default_code']
+            else:
+                codigo = models.execute_kw(db, uid, password, 'ir.sequence', 'next_by_code', ['insca.ret.seq'])
+
         # Añadir a diccionario
         unique_used_retal_data_for_csv = ({
-            'CODIGO': 'test',
+            'CODIGO': codigo,
             'LARGO': str(retal.get('L')[:-3]),
             'ANCHO': str(retal.get('W')[:-3]),
             'CANT': retal.get('Q'),
@@ -180,10 +189,7 @@ def main():
             'ESPESOR': espesor[:-3],
             'CATEGORIA': 'MPRIMA' + ' / ' + 'MADERA ' + code,
             'OC': orden_corte,
-            'DESCRIPCION': code + ' ' +
-            str(retal.get('L')[:-3]).zfill(4) + 'X' +
-            str(retal.get('W')[:-3]).zfill(4) + 'X' +
-            espesor[:-3].zfill(2) + 'MM',
+            'DESCRIPCION': ret_description,
             'VETA': veta
         })
         list_unique_used_retal_data_for_csv.append(unique_used_retal_data_for_csv)
