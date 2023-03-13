@@ -170,11 +170,19 @@ def main():
 
     # Cantidad de retales para CSV
     for retal in root.iter('Drop'):
-        ret_description = (code + ' ' + str(retal.get('L')[:-3]).zfill(4) + 'X' +
-                           str(retal.get('W')[:-3]).zfill(4) + 'X' + espesor[:-3].zfill(2) + 'MM')
+        dimensions = [int(retal.get('L')[:-3]), int(retal.get('W')[:-3])]
+        if veta != '0':
+            largo = str(retal.get('L')[:-3]).zfill(4)
+            ancho = str(retal.get('W')[:-3]).zfill(4)
+        else:
+            largo = str(max(dimensions)).zfill(4)
+            ancho = str(min(dimensions)).zfill(4)
+        ret_description = (code + ' ' + largo + 'X' +
+                           ancho + 'X' + espesor[:-3].zfill(2) + 'MM')
+
         for rec in list_existing_retals:
             if ret_description in rec['name']:
-                print(ret_description, rec['default_code'])
+                # print(ret_description, rec['default_code'])
                 codigo = rec['default_code']
             else:
                 codigo = models.execute_kw(db, uid, password, 'ir.sequence', 'next_by_code', ['insca.ret.seq'])
@@ -182,8 +190,8 @@ def main():
         # Añadir a diccionario
         unique_used_retal_data_for_csv = ({
             'CODIGO': codigo,
-            'LARGO': str(retal.get('L')[:-3]),
-            'ANCHO': str(retal.get('W')[:-3]),
+            'LARGO': largo,
+            'ANCHO': ancho,
             'CANT': retal.get('Q'),
             'MATERIAL': code,
             'ESPESOR': espesor[:-3],
