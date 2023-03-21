@@ -229,7 +229,7 @@ def main():
     html_out = template.render(template_vars)
     filename = ('O:/PdfJob/' + orden_corte.replace('/', '-') + '.pdf')
     HTML(string=html_out).write_pdf(filename)
-    # os.startfile(filename)
+    os.startfile(filename)
 
     # Generar CSVs
     generate_panels_csv(list_unique_used_board_data_for_csv, orden_corte)
