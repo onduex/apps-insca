@@ -25,23 +25,23 @@ def main():
     code = codigo = espesor = date = veta = ""
 
     # Odoo connection
-    url_list = []
-    url = 'http://mail.insca.com:8199'
-    db = 'preproduccion'
-    username = 'onduex'
-    password = 'tomas2021'
-    common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
-    common.version()
-    uid = common.authenticate(db, username, password, {})
-    models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
-    models.execute_kw(db, uid, password, 'product.template', 'check_access_rights', ['read'],
-                      {'raise_exception': False})
-    product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search_read',
-                                         [[['default_code', 'like', 'RT.']]])
-
-    for rec in product_tmpl_ids:
-        list_existing_retals.append(({'name': rec['name'], 'default_code': rec['default_code']}))
-    print(list_existing_retals)
+    # url_list = []
+    # url = 'http://mail.insca.com:8199'
+    # db = 'preproduccion'
+    # username = 'onduex'
+    # password = 'tomas2021'
+    # common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+    # common.version()
+    # uid = common.authenticate(db, username, password, {})
+    # models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+    # models.execute_kw(db, uid, password, 'product.template', 'check_access_rights', ['read'],
+    #                   {'raise_exception': False})
+    # product_tmpl_ids = models.execute_kw(db, uid, password, 'product.template', 'search_read',
+    #                                      [[['default_code', 'like', 'RT.']]])
+    #
+    # for rec in product_tmpl_ids:
+    #     list_existing_retals.append(({'name': rec['name'], 'default_code': rec['default_code']}))
+    # print(list_existing_retals)
 
     # Usar pp.pprint()
     pp = pprint.PrettyPrinter(sort_dicts=False, indent=0)
@@ -180,16 +180,16 @@ def main():
         ret_description = (code + ' ' + largo + 'X' +
                            ancho + 'X' + espesor[:-3].zfill(2) + 'MM')
 
-        for rec in list_existing_retals:
-            if ret_description in rec['name']:
-                # print(ret_description, rec['default_code'])
-                codigo = rec['default_code']
-            else:
-                codigo = models.execute_kw(db, uid, password, 'ir.sequence', 'next_by_code', ['insca.ret.seq'])
+        # for rec in list_existing_retals:
+        #     if ret_description in rec['name']:
+        #         # print(ret_description, rec['default_code'])
+        #         codigo = rec['default_code']
+        #     else:
+        #         codigo = models.execute_kw(db, uid, password, 'ir.sequence', 'next_by_code', ['insca.ret.seq'])
 
         # Añadir a diccionario
         unique_used_retal_data_for_csv = ({
-            'CODIGO': codigo,
+            'CODIGO': '',
             'LARGO': largo,
             'ANCHO': ancho,
             'CANT': retal.get('Q'),
