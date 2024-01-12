@@ -10,6 +10,8 @@ INSTALACIÓN:
 
     pip3 install xlwings pywin32 lxml jinja2 weasyprint requests
 
+    pip3 --proxy HTTP://pperis:Amima56seE@172.31.30.254:3128 install xlwings pywin32 lxml jinja2 weasyprint requests
+
     xlwings addin install
 
     C:\PycharmProjects\apps-insca\soft\msys2-x86_64-20230127.exe
@@ -19,6 +21,10 @@ INSTALACIÓN:
 3.- Guardar printLabelFromXml.py en la misma carpeta que el archivo excel xlsm (con macros)
 
 4.- En VBA, verificar que en Herramientas/Referencias está marcado xlwings y que está la macro que llama al py
+    Interprete --> C:\Python311\python.exe
+    PYTHONPATH --> C:\PycharmProjects\apps-insca\xml2label
+    Install Fonts
+    Reiniciar
 
 5.- Reiniciar Excel
 
