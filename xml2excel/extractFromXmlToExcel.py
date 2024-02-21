@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import os
 import pprint
 import xml.etree.ElementTree as eT
 import xlwings as xw
@@ -20,23 +19,52 @@ def main():
     path = str('O:/XmlToRead/' + xml_name + '.xml')
     tree = eT.parse(path)
     root = tree.getroot()
+    job_time = root.find('Param').find('AddParam').get('JobTime')
 
     # Cantidad de piezas cortadas
     for part in root.iter('Part'):
         # Añadir a diccionario
+        sup = (float(part.get('L'))/1000 * float(part.get('W'))/1000) * float(part.get('qMin'))
         unique_used_part_data = ({
             'id': part.get('id'),
-            'L': str(part.get('L')).replace('.', ','),
-            'W': str(part.get('W')).replace('.', ','),
+            'L': float(part.get('L')),
+            'W': float(part.get('W')),
             'qMin': part.get('qMin'),
             'Code': part.get('Code'),
             'MatNo': part.get('MatNo'),
             'Desc1': part.get('Desc1'),
             'Desc2': part.get('Desc2'),
             'Material': part.get('Material'),
+            'JobTime': job_time,
+            'Sup': float(sup),
         })
         list_unique_used_part_data.append(unique_used_part_data)
-    pp.pprint(list_unique_used_part_data)
+    pp.pprint(len(list_unique_used_part_data))
+
+    # Escribir en excel
+    for i in range(len(list_unique_used_part_data)):
+        if i == 0:
+            sheet["A" + str(i + 2)].value = list_unique_used_part_data[i]['id']
+            sheet["B" + str(i + 2)].value = list_unique_used_part_data[i]['L']
+            sheet["C" + str(i + 2)].value = list_unique_used_part_data[i]['W']
+            sheet["D" + str(i + 2)].value = list_unique_used_part_data[i]['qMin']
+            sheet["E" + str(i + 2)].value = list_unique_used_part_data[i]['Code']
+            sheet["F" + str(i + 2)].value = list_unique_used_part_data[i]['MatNo']
+            sheet["G" + str(i + 2)].value = list_unique_used_part_data[i]['Desc1']
+            sheet["H" + str(i + 2)].value = list_unique_used_part_data[i]['Desc2']
+            sheet["I" + str(i + 2)].value = list_unique_used_part_data[i]['Material']
+            sheet["J" + str(i + 2)].value = list_unique_used_part_data[i]['JobTime']
+            sheet["K" + str(i + 2)].value = list_unique_used_part_data[i]['Sup']
+        else:
+            sheet["A" + str(i + 2)].value = list_unique_used_part_data[i]['id']
+            sheet["B" + str(i + 2)].value = list_unique_used_part_data[i]['L']
+            sheet["C" + str(i + 2)].value = list_unique_used_part_data[i]['W']
+            sheet["D" + str(i + 2)].value = list_unique_used_part_data[i]['qMin']
+            sheet["E" + str(i + 2)].value = list_unique_used_part_data[i]['Code']
+            sheet["F" + str(i + 2)].value = list_unique_used_part_data[i]['MatNo']
+            sheet["G" + str(i + 2)].value = list_unique_used_part_data[i]['Desc1']
+            sheet["H" + str(i + 2)].value = list_unique_used_part_data[i]['Desc2']
+            sheet["I" + str(i + 2)].value = list_unique_used_part_data[i]['Material']
 
 
 if __name__ == "__main__":
