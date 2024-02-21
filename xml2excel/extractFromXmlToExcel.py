@@ -20,11 +20,13 @@ def main():
     tree = eT.parse(path)
     root = tree.getroot()
     job_time = root.find('Param').find('AddParam').get('JobTime')
+    sum_sup = 0.0
+    seg_m2 = 0.0
 
     # Cantidad de piezas cortadas
     for part in root.iter('Part'):
         # Añadir a diccionario
-        sup = (float(part.get('L'))/1000 * float(part.get('W'))/1000) * float(part.get('qMin'))
+        sup = (float(part.get('L')) / 1000 * float(part.get('W')) / 1000) * float(part.get('qMin'))
         unique_used_part_data = ({
             'id': part.get('id'),
             'L': float(part.get('L')),
@@ -35,11 +37,15 @@ def main():
             'Desc1': part.get('Desc1'),
             'Desc2': part.get('Desc2'),
             'Material': part.get('Material'),
-            'JobTime': job_time,
             'Sup': float(sup),
+            'JobTime': job_time,
         })
         list_unique_used_part_data.append(unique_used_part_data)
     pp.pprint(len(list_unique_used_part_data))
+
+    for i in range(len(list_unique_used_part_data)):
+        sum_sup += list_unique_used_part_data[i]['Sup']
+        seg_m2 = float(list_unique_used_part_data[i]['JobTime']) / float(sum_sup)
 
     # Escribir en excel
     for i in range(len(list_unique_used_part_data)):
@@ -53,8 +59,9 @@ def main():
             sheet["G" + str(i + 2)].value = list_unique_used_part_data[i]['Desc1']
             sheet["H" + str(i + 2)].value = list_unique_used_part_data[i]['Desc2']
             sheet["I" + str(i + 2)].value = list_unique_used_part_data[i]['Material']
-            sheet["J" + str(i + 2)].value = list_unique_used_part_data[i]['JobTime']
-            sheet["K" + str(i + 2)].value = list_unique_used_part_data[i]['Sup']
+            sheet["J" + str(i + 2)].value = list_unique_used_part_data[i]['Sup']
+            sheet["K" + str(i + 2)].value = list_unique_used_part_data[i]['JobTime']
+            sheet["L" + str(i + 2)].value = seg_m2
         else:
             sheet["A" + str(i + 2)].value = list_unique_used_part_data[i]['id']
             sheet["B" + str(i + 2)].value = list_unique_used_part_data[i]['L']
@@ -65,6 +72,7 @@ def main():
             sheet["G" + str(i + 2)].value = list_unique_used_part_data[i]['Desc1']
             sheet["H" + str(i + 2)].value = list_unique_used_part_data[i]['Desc2']
             sheet["I" + str(i + 2)].value = list_unique_used_part_data[i]['Material']
+            sheet["J" + str(i + 2)].value = list_unique_used_part_data[i]['Sup']
 
 
 if __name__ == "__main__":
