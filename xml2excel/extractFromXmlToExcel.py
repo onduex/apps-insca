@@ -21,13 +21,13 @@ def main():
 
     for rec in file_names:
         sum_sup = 0
+        seg_m2 = 0
         if rec.endswith('.xml'):
             path = str('O:/XmlToRead/' + rec)
             print(path)
             tree = eT.parse(path)
             root = tree.getroot()
             job_time = root.find('Param').find('AddParam').get('JobTime')
-            seg_m2 = 0
 
             # Cantidad de piezas cortadas
             for part in root.iter('Part'):
@@ -45,6 +45,7 @@ def main():
                     'Material': part.get('Material'),
                     'Sup': float(sup),
                     'JobTime': '',
+                    'seg_m2': '',
                 })
                 list_unique_used_part_data.append(unique_used_part_data)
 
@@ -52,6 +53,9 @@ def main():
                            len(list_unique_used_part_data)):
                 if list_unique_used_part_data[j]['Sup']:
                     sum_sup += float(list_unique_used_part_data[j]['Sup'])
+
+            if job_time != '0':
+                seg_m2 = sum_sup / float(job_time)
 
             list_unique_used_part_data.append({
                     'id': '--',
@@ -65,6 +69,7 @@ def main():
                     'Material': '--',
                     'Sup': sum_sup,
                     'JobTime': job_time,
+                    'seg_m2': seg_m2,
                 })
 
             list_unique_used_part_data.append({
@@ -79,6 +84,7 @@ def main():
                 'Material': '',
                 'Sup': '',
                 'JobTime': '',
+                'seg_m2': '',
             })
 
             # pp.pprint(len(list_unique_used_part_data))
@@ -98,6 +104,7 @@ def main():
             sheet["I" + str(i + 2)].value = list_unique_used_part_data[i]['Material']
             sheet["J" + str(i + 2)].value = list_unique_used_part_data[i]['Sup']
             sheet["K" + str(i + 2)].value = list_unique_used_part_data[i]['JobTime']
+            sheet["L" + str(i + 2)].value = list_unique_used_part_data[i]['seg_m2']
 
 
 if __name__ == "__main__":
