@@ -31,13 +31,13 @@ Down::
                 Run rutaFinal ; Ejecutar la ruta final
                 WinWait "FastStone Image Viewer" ; Esperar a que aparezca la ventana "FastStone Image Viewer 7.8
                 WinActivate "FastStone Image Viewer" ; Activar la ventana de FastStone Image Viewer 7.8
-                Sleep 300
+                Sleep 400
                 WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
             }
             catch as e  ; Si no existe el fichero PNG
             {
                 MsgBox "El fichero de imagen PNG no existe, loco"
-                Sleep 300
+                Sleep 400
                 WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
                 Exit
             }
@@ -80,13 +80,13 @@ Up::
                 Run rutaFinal ; Ejecutar la ruta final
                 WinWait "FastStone Image Viewer" ; Esperar a que aparezca la ventana "FastStone Image Viewer 7.8
                 WinActivate "FastStone Image Viewer" ; Activar la ventana de FastStone Image Viewer 7.8
-                Sleep 300
+                Sleep 400
                 WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
             }
             catch as e  ; Si no existe el fichero PNG
             {
                 MsgBox "El fichero de imagen PNG no existe, loco"
-                Sleep 300
+                Sleep 400
                 WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
                 Exit
             }
