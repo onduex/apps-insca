@@ -14,15 +14,24 @@ Down::
             itemRevision := wordAarray[2]
             rutaFija := "R:\DTECNIC\PLANOS\0_PNG\"
             revLength := StrLen(itemRevision)
+            itemNumberLength := StrLen(itemNumber)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
             ; OutputDebug "ItemNumber: " itemNumber
 
-            If (revLength = 1)
+            if (SubStr(itemNumber, -3) = "ipt" or SubStr(itemNumber, -3) = "IPT" or
+            SubStr(itemNumber, -3) = "iam" or SubStr(itemNumber, -3) = "IAM" or
+            SubStr(itemNumber, -3) = "idw" or SubStr(itemNumber, -3) = "IDW" or
+            Substr(itemNumber, -3) = "ipn" or Substr(itemNumber, -3) = "IPN")
+                {
+                    itemNumber := SubStr(itemNumber, 1, itemNumberLength - 4)
+                }
+
+            if (revLength = 1)
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R0" itemRevision ".png"
                 }
-            Else
+            else
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R" itemRevision ".png"
                 }
@@ -64,15 +73,24 @@ Up::
             itemRevision := wordAarray[2]
             rutaFija := "R:\DTECNIC\PLANOS\0_PNG\"
             revLength := StrLen(itemRevision)
+            itemNumberLength := StrLen(itemNumber)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
             ; OutputDebug "ItemNumber: " itemNumber
 
-            If (revLength = 1)
+            if (SubStr(itemNumber, -3) = "ipt" or SubStr(itemNumber, -3) = "IPT" or
+            SubStr(itemNumber, -3) = "iam" or SubStr(itemNumber, -3) = "IAM" or
+            SubStr(itemNumber, -3) = "idw" or SubStr(itemNumber, -3) = "IDW" or
+            Substr(itemNumber, -3) = "ipn" or Substr(itemNumber, -3) = "IPN")
+                {
+                    itemNumber := SubStr(itemNumber, 1, itemNumberLength - 4)
+                }
+
+            if (revLength = 1)
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R0" itemRevision ".png"
                 }
-            Else
+            else
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R" itemRevision ".png"
                 }
@@ -108,20 +126,30 @@ Return
             A_Clipboard := ""
             Send "^c"
             ClipWait
-            wordAarray := StrSplit(A_Clipboard, A_Tab, ".")
+            vText := Trim(A_Clipboard, "`t") ; Eliminar los TABs del principio del texto
+            wordAarray := StrSplit(vText, A_Tab, ".")
             itemNumber := wordAarray[1]
             itemRevision := wordAarray[2]
             rutaFija := "R:\DTECNIC\PLANOS\0_PNG\"
             revLength := StrLen(itemRevision)
+            itemNumberLength := StrLen(itemNumber)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
             ; OutputDebug "ItemNumber: " itemNumber
 
-            If (revLength = 1)
+            if (SubStr(itemNumber, -3) = "ipt" or SubStr(itemNumber, -3) = "IPT" or
+            SubStr(itemNumber, -3) = "iam" or SubStr(itemNumber, -3) = "IAM" or
+            SubStr(itemNumber, -3) = "idw" or SubStr(itemNumber, -3) = "IDW" or
+            Substr(itemNumber, -3) = "ipn" or Substr(itemNumber, -3) = "IPN")
+                {
+                    itemNumber := SubStr(itemNumber, 1, itemNumberLength - 4)
+                }
+
+            if (revLength = 1)
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R0" itemRevision ".png"
                 }
-            Else
+            else
                 {
                     rutaFinal := rutaFija dirTres "\" dirSiete "\" itemNumber "_R" itemRevision ".png"
                 }
