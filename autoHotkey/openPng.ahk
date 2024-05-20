@@ -9,7 +9,8 @@ Down::
             A_Clipboard := ""
             Send "^c"
             ClipWait
-            wordAarray := StrSplit(A_Clipboard, A_Tab, ".")
+            vText := Trim(A_Clipboard, "`t") ; Eliminar los TABs del principio del texto
+            wordAarray := StrSplit(vText, A_Tab, ".")
             itemNumber := wordAarray[1]
             itemRevision := wordAarray[2]
             rutaFija := "R:\DTECNIC\PLANOS\0_PNG\"
@@ -68,7 +69,8 @@ Up::
             A_Clipboard := ""
             Send "^c"
             ClipWait
-            wordAarray := StrSplit(A_Clipboard, A_Tab, ".")
+            vText := Trim(A_Clipboard, "`t") ; Eliminar los TABs del principio del texto
+            wordAarray := StrSplit(vText, A_Tab, ".")
             itemNumber := wordAarray[1]
             itemRevision := wordAarray[2]
             rutaFija := "R:\DTECNIC\PLANOS\0_PNG\"
