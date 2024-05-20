@@ -16,6 +16,7 @@ Down::
             revLength := StrLen(itemRevision)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
+            ; OutputDebug "ItemNumber: " itemNumber
 
             If (revLength = 1)
                 {
@@ -65,6 +66,7 @@ Up::
             revLength := StrLen(itemRevision)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
+            ; OutputDebug "ItemNumber: " itemNumber
 
             If (revLength = 1)
                 {
@@ -113,6 +115,7 @@ Return
             revLength := StrLen(itemRevision)
             dirTres := SubStr(itemNumber, 1, 3)
             dirSiete := SubStr(itemNumber, 1, 7)
+            ; OutputDebug "ItemNumber: " itemNumber
 
             If (revLength = 1)
                 {
@@ -141,14 +144,3 @@ Return
 
         }
 }
-
-
-
-
-; PID := ProcessExist("OpenConsole.exe")
-; OutputDebug "ItemNumber: " itemNumber
-; OutputDebug "ItemRevision: " itemRevision
-; OutputDebug "RutaFija: " rutaFija
-; OutputDebug "RevLength: " revLength
-; OutputDebug "dirTres: " dirTres
-; OutputDebug "dirSiete: " dirSiete
