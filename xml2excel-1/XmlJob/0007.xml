@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created on Tue Jun  4 15:16:04 2024  Optiplanning: 3.00.0.0 -->
+<CutList next='0008.xml' order='LAS CHAFIRAS.opj' NParts='17' NBoards='2'>
+	<Tx Date='Mon Apr 29 18:03:11 2024'/>
+	<Part id='P1' L='1880.00' W='460.00' qMin='4' Grain='1' Code='1' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='1'/>
+	<Part id='P2' L='1652.00' W='460.00' qMin='4' Grain='1' Code='2' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='2'/>
+	<Part id='P3' L='1650.00' W='460.00' qMin='4' Grain='1' Code='3' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='3'/>
+	<Part id='P4' L='1585.00' W='460.00' qMin='8' Grain='1' Code='4' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='4'/>
+	<Part id='P5' L='525.00' W='460.00' qMin='6' Grain='1' Code='5' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='5'/>
+	<Part id='P6' L='524.00' W='460.00' qMin='12' Grain='1' Code='6' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='6'/>
+	<Part id='P7' L='1680.00' W='190.00' qMin='1' Grain='1' Code='7' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='7'/>
+	<Part id='P8' L='1650.00' W='190.00' qMin='1' Grain='1' Code='8' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' Material='D28ST10H3303' SizeNo='8'/>
+	<Part id='P9' L='2548.00' W='470.00' qMin='2' Grain='1' Code='9' MatNo='905' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' SizeNo='9'/>
+	<Part id='P10' L='992.00' W='470.00' qMin='2' Grain='1' Code='10' MatNo='905' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' SizeNo='10'/>
+	<Part id='P11' L='479.00' W='449.00' qMin='8' Grain='1' Code='11' MatNo='905' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' SizeNo='11'/>
+	<Part id='P12' L='467.00' W='449.00' qMin='1' Grain='1' Code='12' MatNo='905' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' SizeNo='12'/>
+	<Part id='P13' L='983.00' W='450.00' qMin='1' Grain='1' Code='13' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' SizeNo='13'/>
+	<Part id='P14' L='982.00' W='450.00' qMin='2' Grain='1' Code='14' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' SizeNo='14'/>
+	<Part id='P15' L='981.00' W='450.00' qMin='1' Grain='1' Code='15' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' SizeNo='15'/>
+	<Part id='P16' L='980.00' W='450.00' qMin='1' Grain='1' Code='16' MatNo='905' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' SizeNo='16'/>
+	<AddedPart id='P17' L='2770.00' W='620.00' Prio='0' Code='17' MatNo='905' SizeNo='17' />
+	<Board id='B1' L='2800.00' W='2070.00' Type='1' BrdNo='1' MatNo='905' Thickness='28.00' BrdCode='100990367' LTrim='15.00' RTrim='15.00' Cost='579.600000' CostMQ='100.000000'/>
+	<Board id='B2' L='1750.00' W='600.00' Type='0' BrdNo='0' MatNo='905' Thickness='28.00' Qty='1' Disable='1' Cost='100.000000' CostMQ='95.238095'/>
+	<Material id='905' Thickness='28.00' Density='700' Cost='100.0000' Code='D28ST10H3303' Desc='MEL DM 28 ST10 H3303 ARLINGTON' />
+	<SendOptions DropL='6000.00' DropH='6000.00' />
+	<Param Algo='2' SR='1' ZC='3' PSTK='1'>
+		<OptiParam ver='6' PatternRed='0' OverPrRed='0' LRPen='0' SRPen='10' SHCPen='20' LHCPen='100' ZCPen='5' TRound='20' TBVCycle='180' RunLevel='0' TrigLev='50' HCTrigLev='30' ZCTrigLev='30' PreProcSize='30' SQTrigger='20' PattOrd='102' SawEff='80' TimeTrigHV='0' TimeTrigLV='0' SQPar='20' AlgoFlags='1' NoAbbaPen='0'/>
+		<OverParam NumConstaints='16' NumConstrParts='16' NumConstrBoards='0' NumConstrBalance='0' DeltaSol='10000000' MaxOverParts='0' MaxOverArea='0' MaxOverPieces='0'/>
+		<AddParam NoTensionStripH='0.00' NoTensionTrimDim='0.00' NoTensionOffset='0.00' NoTensionPieceL='0.00' NoTensionPieceW='0.00' SawTPar='0' WSRtoLR='0.00' DownloadSawNum='0' ParamLabelingNum='0' JobTime='2361' JobCost='3477.600000' MinDropForMsg='0.00' WSHCtoLHC='0.00' WRotPattern='0.00' MinDimForAbba='0.00' MinSizeSingleStrip='0.00' MaxSizeEvenStrips='0.00' DecreaseWidth2CrsWork='0.00'/>
+		<DropParam MinLen='300.00' MinWid='300.00' MinArea='0' ExchangeDim='1' HCEmpty='1' DropValue='5' DropTrim='0'/>
+		<StackParam MaxStack='16' HCNotStacked='0' MinDim='0.00' MaxDim='0.00' MinLength='0.00' MinWidth='0.00' MinQty='0' StackingParNo='0' GreatDimTol='0' MaxCtmQty='10' TolLength='0' TolWidth='0'/>
+		<BundleParam MinBundle='1' MaxBundle='0' NoPattMinWaste='0'/>
+		<ZCutParam MaxStages='3' MinCutLen='0.00' MaxCutLen='5650.00' MinCutDist='0.00' MaxCutDist='5650.00' MinLastCutDist='0.00' MaxCutsForBlock='99' MaxTotCutsForBlock='99' MinCutTrim='5.00' MaxCutTrim='5650.00' MaxStripZCuts='0'/>
+		<LRParam MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='0.00' MaxStripWid='5650.00' MinLastStripWid='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupWid='0.00' MaxStripGroupWid='5650.00' ZCutsAllowed='1'/>
+		<SRParam MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='0.00' MaxStripLen='5650.00' MinLastStripLen='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupLen='0.00' MaxStripGroupLen='5650.00' ZCutsAllowed='1'/>
+		<SHCParam MaxHCLen='2150.00' MinHCLen='300.00' MinBodyLen='1400.00'>
+			<ShortHeadCut MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='0.00' MaxStripLen='5650.00' MinLastStripLen='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupLen='0.00' MaxStripGroupLen='5650.00' ZCutsAllowed='1'/>
+			<ShortMainBody MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='0.00' MaxStripWid='5650.00' MinLastStripWid='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupWid='0.00' MaxStripGroupWid='5650.00' ZCutsAllowed='1'/>
+		</SHCParam>
+		<LHCParam MaxHCWid='1250.00' MinHCWid='0.00' MinBodyWid='0.00'>
+			<LongHeadCut MinPartLen='0.00' MaxPartLen='5650.00' MinLastPartLen='0.00' MinStripWid='0.00' MaxStripWid='5650.00' MinLastStripWid='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupWid='0.00' MaxStripGroupWid='5650.00' ZCutsAllowed='0'/>
+			<LongMainBody MinPartWid='0.00' MaxPartWid='5650.00' MinLastPartWid='0.00' MinStripLen='0.00' MaxStripLen='5650.00' MinLastStripLen='0.00' MaxPartsForStrip='99' MaxTotPartsForStrip='99' MaxStrips='20' MaxTotStrips='99' MaxStripGroups='20' MinStripGroupLen='0.00' MaxStripGroupLen='5650.00' ZCutsAllowed='0'/>
+		</LHCParam>
+	</Param>
+	<SimulParam Model='0' TimeCost='0' TypeABBA='0' SawSetup='7' RipSize='5650.00' CrossSize='5650.00' HCSize='5650.00' MinDimLastCut='0.00' MaxBook='120.00' MinWorkingSize='0.00' MaxWorkingSize='0.00' NumBook='0' BookThreshold='60.00' ThickThreshold='0.00' ThickLoad='0' StripSuperposition='0' SpeedReduction='100'>
+		<Blades Rip='4.50' Cross='4.50' HC='4.50' ZC='4.50' Main='4.50' Groove='4.50'/>
+		<Trims MinDivRip='20.00' MaxDivRip='80.00' OptRip='30.00' ForceRip='0' MinDivCross='20.00' MaxDivCross='80.00' OptCross='30.00' ForceCross='0' HCTrimMax='40.00' HCTrimMin='10.00' HCOptTrim='30.00' HCForceTrim='0' ZMinTrim='20.00' ZMaxTrim='40.00' ZOptTrim='30.00' ZForceTrim='1' TrimAfterHC='0' NcOsiTrim='0'/>
+		<Clamps Nr='0' ClampsSol='0' ClampsInd='0' ClampsTp='0' Dim='0.00' Tol='0.00' ClampsTime='0'>
+		</Clamps>
+		<TMan mask='0' HCRot='12' MBRot='15' StripRot='10' ZCRot='8' TrimEvac='2' DropEvacCoeff='0' PanelLoad='15' BookCoeff='0'/>
+		<FirstAxis SawCarriageOverstroke='1000.00' SawCarriageSpeed='40' SawCarriageReturnSpeed='100' SawCarriageRamp='1' PusherSpeed='25' PusherReturnSpeed='60' PusherRamp='1' PressureBeam='8' LastCutWait='5' SpeedDecThresholdForTrim='20.00' SpeedDecCoeffForTrim='100' SpeedDecCoeffForBook='100' FrontAlignPos='580.00' FrontAlignTime='20' ExpulInterfPos='850.00' ExpulsionTime='4' SplitUpThreshold='160.00' SideAlignTime='5' BackPos='6150.00' WithdrawalPos='1400.00' MaxAlignDim='2150.00'/>
+		<SecondAxis SawCarriageOverstroke='1000.00' SawCarriageSpeed='40' SawCarriageReturnSpeed='150' SawCarriageRamp='1' PusherSpeed='40' PusherReturnSpeed='60' PusherRamp='1' PressureBeam='8' LastCutWait='5' SpeedDecThresholdForTrim='20.00' SpeedDecCoeffForTrim='100' SpeedDecCoeffForBook='100' FrontAlignPos='900.00' FrontAlignTime='4' ExpulInterfPos='850.00' ExpulsionTime='4' SplitUpThreshold='200.00' TrapdoorTime='1' TrapdoorPos='310.00' TP_PusherStroke='3200.00' TP_MaxCatWid='1500.00' TP_LenPVA='2200.00' TP_Offset='120.00' TP_PosBegin750='-80.00' TP_PosEnd750='370.00' TP_PosStep750='50.00' TP_Distance750='150.00' TP_PosNoInterf='3200.00'/>
+		<Shuttle Width='2222.00' RampTime='1' LiftTime='1' EmptySpeed='70' LoadedSpeed='40' StoringSpeed='30' SpeedDecCoeffForBook='100' GroupMinWidthForBookMov='80.00' SpeedDecCoeffForNarrowStrips='100' NarrowStripWidthMax='80.00' WithdrawalPos='20.00' TrapdoorOpenPos='510.00' CrossPos='2365.00' WaitingStationPos='4665.00' WaitingStationSize='1650.00' HIntBook='80.00'/>
+		<Transfer RampTime='1' EmptySpeed='40' LoadedSpeed='25' SpeedDecCoeffForBook='100' GroupMinWidthForBookMov='80.00' SpeedDecCoeffForNarrowStrips='100' NarrowStripWidthMax='80.00' TrapdoorInPos='4512.00' TrapdoorOutPos='4385.00' CrossPos='2300.00' RollerSize='80.00' RollerTime='1' PreWStationSize='2200.00' TotalSize='5080.00' LiftTime='1' Roller1Pos='400.00'/>
+		<LiftTable MaxLoadingHeight='0.00' SetupTime='5' ThinMatLoadTime='10' WithdrawalSpeed='30' ThinMatWithdrawalSpeed='15' WithdrawalPos='3300.00' PushingPointsTime='5'/>
+		<Vacuum LoadingTimeForFirstThickPanel='10' ThickPanelLoadingTime='8' ThickPanelDeltaTime='2' LoadingTimeForFirstThinPanel='8' ThinPanelLoadingTime='6' ThinPanelDeltaTime='1' VacuumInterferencePos='1800.00' BookWithdrawalPos='6400.00' WithdrawalSpeed='30' VacumLeavePusherTakeDistance='55000'/>
+		<TurningTable FixedTime='30' RotationTime='20' SawLengthIncrease='2150.00' IncreaseForRotation='700.00' FrontAlignerPos='2920.00' DoubleAligner='0' FirstAlignerPos='3600.00' SecondAlignerPos='550.00' AlignersDistance='2950.00' LenTable='4670.00' WidTable='2065.00'/>
+	</SimulParam>
+	<Solution NPatterns='5' NStackQueue='5' TotTime='0' Worked='0' NPieces='17' PercLost='15.097%'
+		TCut='1889' TLongMB='401' TCrossMB='1488' TMan='320'
+		CutLen1='1091960' NCycl='5'
+		Prod='29525711' HProd='27808311'
+		Lost='5250289' Kerf='591948' Trim='372600' Scrap='4285741'>
+		<Pattern id='S1' BrdNo='B1' Rep='1' Cyc='1' UL='2639.50' UW='2048.00'
+			TCyc='433' TStart='0' TStop='388' TMan='73'
+			TLongMB='77' TCrossMB='311' 
+			CutLen1='225770' 
+			Prod='5120330' HProd='5120330'
+			Lost='675670' Kerf='101597' Trim='62100' Scrap='511974'
+			Str='S(X,(Y,13,(X,16),(X,14),(X,14)),(Y,2,2,2,2,(X,8)))'
+			Chk='15637'>
+		</Pattern>
+		<Pattern id='S2' BrdNo='B1' Rep='1' Cyc='1' UL='2408.50' UW='2048.00'
+			TCyc='380' TStart='388' TStop='723' TMan='51'
+			TLongMB='77' TCrossMB='258' 
+			CutLen1='204900' 
+			Prod='4742560' HProd='4742560'
+			Lost='1053440' Kerf='92205' Trim='62100' Scrap='899135'
+			Str='S(X,(Y,6,6,6,6),(Y,1,1,1,1,(X,7)))'
+			Chk='9896'>
+		</Pattern>
+		<Pattern id='S3' BrdNo='B1' Rep='2' Cyc='1' UL='2643.00' UW='1853.50'
+			TCyc='463' TStart='723' TStop='1156' TMan='78'
+			TLongMB='108' TCrossMB='325' 
+			CutLen1='223480' 
+			Prod='9640262' HProd='9640262'
+			Lost='1951738' Kerf='201132' Trim='124200' Scrap='1626406'
+			Str='S(X,(Y,5,5,5,(X,11)),(Y,6,6,6,6),(Y,4,4,4,4))'
+			Chk='14464'>
+		</Pattern>
+		<Pattern id='S4' BrdNo='B1' Rep='1' Cyc='1' UL='2770.00' UW='2022.50'
+			TCyc='427' TStart='1156' TStop='1538' TMan='59'
+			TLongMB='62' TCrossMB='320' 
+			CutLen1='225640' 
+			Prod='5182487' HProd='3465087'
+			Lost='613513' Kerf='101538' Trim='62100' Scrap='449875'
+			Str='S(X,(Y,17,(X,9),(X,9),(X,12,11,11,11,11)))'
+			Chk='12444'>
+		</Pattern>
+		<Pattern id='S5' BrdNo='B1' Rep='1' Cyc='1' UL='2646.50' UW='1853.50'
+			TCyc='396' TStart='1538' TStop='1889' TMan='59'
+			TLongMB='77' TCrossMB='274' 
+			CutLen1='212170' 
+			Prod='4840072' HProd='4840072'
+			Lost='955928' Kerf='95476' Trim='62100' Scrap='798352'
+			Str='S(X,(Y,10,10,(X,11,11),(X,15)),(Y,3,3,3,3))'
+			Chk='13243'>
+		</Pattern>
+		<Piece N='1' L='1880.00' W='460.00' Q='4' G='1' StkGrp='0' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P1'/>
+			<Sid id='S2' qP1='4' />
+			<MatCost><Currency>422.757397</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>105.689349</Currency></UCost>
+		</Piece>
+		<Piece N='2' L='1652.00' W='460.00' Q='4' G='1' StkGrp='1' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P2'/>
+			<Sid id='S1' qP2='4' />
+			<MatCost><Currency>344.079098</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>86.019775</Currency></UCost>
+		</Piece>
+		<Piece N='3' L='1650.00' W='460.00' Q='4' G='1' StkGrp='2' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P3'/>
+			<Sid id='S5' qP3='4' />
+			<MatCost><Currency>363.561864</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>90.890466</Currency></UCost>
+		</Piece>
+		<Piece N='4' L='1585.00' W='460.00' Q='8' G='1' StkGrp='3' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P4'/>
+			<Sid id='S3' qP4='8' />
+			<MatCost><Currency>701.369087</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>87.671136</Currency></UCost>
+		</Piece>
+		<Piece N='5' L='525.00' W='460.00' Q='6' G='1' StkGrp='4' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P5'/>
+			<Sid id='S3' qP5='6' />
+			<MatCost><Currency>174.236011</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>29.039335</Currency></UCost>
+		</Piece>
+		<Piece N='6' L='524.00' W='460.00' Q='12' G='1' StkGrp='5' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P6'/>
+			<Sid id='S2' qP6='4' />
+			<Sid id='S3' qP6='8' />
+			<MatCost><Currency>349.704559</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>29.142047</Currency></UCost>
+		</Piece>
+		<Piece N='7' L='1680.00' W='190.00' Q='1' G='1' StkGrp='6' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P7'/>
+			<Sid id='S2' qP7='1' />
+			<MatCost><Currency>39.010222</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>39.010222</Currency></UCost>
+		</Piece>
+		<Piece N='8' L='1650.00' W='190.00' Q='1' G='1' StkGrp='7' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15821' >
+			<Pid id='P8'/>
+			<Sid id='S1' qP8='1' />
+			<MatCost><Currency>35.486892</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>35.486892</Currency></UCost>
+		</Piece>
+		<Piece N='9' L='2548.00' W='470.00' Q='2' G='1' StkGrp='8' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' >
+			<Pid id='P9'/>
+			<Sid id='S4' qP9='2' />
+			<MatCost><Currency>267.865901</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>133.932951</Currency></UCost>
+		</Piece>
+		<Piece N='10' L='992.00' W='470.00' Q='2' G='1' StkGrp='9' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' >
+			<Pid id='P10'/>
+			<Sid id='S5' qP10='2' />
+			<MatCost><Currency>111.664745</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>55.832373</Currency></UCost>
+		</Piece>
+		<Piece N='11' L='479.00' W='449.00' Q='8' G='1' StkGrp='10' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' >
+			<Pid id='P11'/>
+			<Sid id='S3' qP11='2' />
+			<Sid id='S4' qP11='4' />
+			<Sid id='S5' qP11='2' />
+			<MatCost><Currency>199.444962</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>24.930620</Currency></UCost>
+		</Piece>
+		<Piece N='12' L='467.00' W='449.00' Q='1' G='1' StkGrp='11' IDesc='115289999' IIDesc='LAS CHAFIRAS A15.15847' >
+			<Pid id='P12'/>
+			<Sid id='S4' qP12='1' />
+			<MatCost><Currency>23.450569</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>23.450569</Currency></UCost>
+		</Piece>
+		<Piece N='13' L='983.00' W='450.00' Q='1' G='1' StkGrp='12' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' >
+			<Pid id='P13'/>
+			<Sid id='S1' qP13='1' />
+			<MatCost><Currency>50.072175</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>50.072175</Currency></UCost>
+		</Piece>
+		<Piece N='14' L='982.00' W='450.00' Q='2' G='1' StkGrp='13' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' >
+			<Pid id='P14'/>
+			<Sid id='S1' qP14='2' />
+			<MatCost><Currency>100.042474</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>50.021237</Currency></UCost>
+		</Piece>
+		<Piece N='15' L='981.00' W='450.00' Q='1' G='1' StkGrp='14' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' >
+			<Pid id='P15'/>
+			<Sid id='S5' qP15='1' />
+			<MatCost><Currency>52.863763</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>52.863763</Currency></UCost>
+		</Piece>
+		<Piece N='16' L='980.00' W='450.00' Q='1' G='1' StkGrp='15' IDesc='115289999' IIDesc='ZONA 2 CHAFIRAS A15.15840' >
+			<Pid id='P16'/>
+			<Sid id='S1' qP16='1' />
+			<MatCost><Currency>49.919361</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>49.919361</Currency></UCost>
+		</Piece>
+		<Piece N='17' L='2770.00' W='620.00' Q='1' StkGrp='16' >
+			<Aid id='P17'/>
+			<Sid id='S4' qP17='1' />
+			<MatCost><Currency>192.070919</Currency></MatCost>
+			<CutCost><Currency>0.000000</Currency></CutCost>
+			<UCost><Currency>192.070919</Currency></UCost>
+		</Piece>
+		<BrdInfo BrdId='B1' QUsed='6' Prod='29525711' Drop='0' Lost='5250289'/>
+		<BrdInfo BrdId='B2' QUsed='0' Prod='0' Drop='0' Lost='0'/>
+	</Solution>
+</CutList>
