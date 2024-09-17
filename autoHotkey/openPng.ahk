@@ -79,6 +79,16 @@ Up::
 return
 }
 
+~q & ~LButton::
+{
+    if WinActive("Autodesk Vault Professional 2025")
+        {
+            A_Clipboard := ""
+            openPng()
+            return
+        }
+}
+
 ^ñ::
 {
     if WinActive("Autodesk Vault Professional 2025")
