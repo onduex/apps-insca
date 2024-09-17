@@ -51,7 +51,6 @@ openPng() ; Función para abrir el fichero PNG
 
 }
 
-
 Down::
 {
     if WinActive("Autodesk Vault Professional 2025") and WinExist("FastStone Image Viewer 7.8")
@@ -76,15 +75,6 @@ Up::
     else
         {
             Send "{Up}"
-        }
-return
-}
-
-~LButton::
-{
-    if WinActive("Autodesk Vault Professional 2025") and WinExist("FastStone Image Viewer 7.8")
-        {
-            openPng()
         }
 return
 }
