@@ -37,15 +37,15 @@ openPng() ; Función para abrir el fichero PNG
     try
     {
         Run rutaFinal ; Ejecutar la ruta final
-        WinWait "FastStone Image Viewer" ; Esperar a que aparezca la ventana "FastStone Image Viewer 7.8
-        WinActivate "FastStone Image Viewer" ; Activar la ventana de FastStone Image Viewer 7.8
+        WinWait "FastStone Image Viewer 7.8" ; Esperar a que aparezca la ventana "FastStone Image Viewer 7.8
+        WinActivate "FastStone Image Viewer 7.8" ; Activar la ventana de FastStone Image Viewer 7.8
         Sleep 400 ; Esperar 0.4 segundos
-        WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
+        WinActivate "Autodesk Vault Professional 2025" ; Activar la ventana de Vault
     }
     catch as e  ; Si no existe el fichero PNG
     {
         MsgBox "El fichero de imagen PNG no existe"
-        WinActivate "Autodesk Vault Professional" ; Activar la ventana de Vault
+        WinActivate "Autodesk Vault Professional 2025" ; Activar la ventana de Vault
         Exit
     }
 
@@ -54,7 +54,7 @@ openPng() ; Función para abrir el fichero PNG
 
 Down::
 {
-    if WinActive("Autodesk Vault Professional") and WinExist("FastStone Image Viewer")
+    if WinActive("Autodesk Vault Professional 2025") and WinExist("FastStone Image Viewer 7.8")
         {
             Send "{Down}"
             openPng()
@@ -68,7 +68,7 @@ return
 
 Up::
 {
-    if WinActive("Autodesk Vault Professional") and WinExist("FastStone Image Viewer")
+    if WinActive("Autodesk Vault Professional 2025") and WinExist("FastStone Image Viewer 7.8")
         {
             Send "{Up}"
             openPng()
@@ -91,7 +91,7 @@ return
 
 ^ñ::
 {
-    if WinActive("Autodesk Vault Professional")
+    if WinActive("Autodesk Vault Professional 2025")
         {
             openPng()
         }
