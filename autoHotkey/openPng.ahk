@@ -84,7 +84,6 @@ return
     if WinActive("Autodesk Vault Professional")
         {
             openPng()
-            
         }
 return
 }
